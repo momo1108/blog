@@ -92,9 +92,9 @@ comments:
   giscus:
     # <gh-username>/<repo>
     repo: momo1108/momo1108.github.io
-    repo_id: 716438973
-    category:
-    category_id:
+    repo_id: R_kgDOKrP9vQ
+    category: Announcements
+    category_id: DIC_kwDOKrP9vc4Ca0Zx
     mapping: # optional, default to 'pathname'
     input_position: # optional, default to 'bottom'
     lang: # optional, default to the value of `site.lang`
