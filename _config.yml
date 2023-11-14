@@ -197,4 +197,4 @@ jekyll-archives:
 
 webrick:
   headers:
-    Content-Security-Policy: frame-ancestors 'self'; 
+    Content-Security-Policy: frame-ancestors https://giscus.app;
