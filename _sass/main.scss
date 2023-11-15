@@ -25,3 +25,58 @@
         justify-content: center;
     }
 }
+
+div#main-wrapper > div.container {
+    background-image: var(--main-bg);
+    background-size: 200px 200px;
+
+    main div.content {
+    
+        h1, h2, h3 {
+            font-weight: bold;
+        }
+        hr {
+            position: relative;
+            margin: 70px 0 !important;
+            overflow: visible;
+            opacity: .75;
+            border-color: var(--content-hr-border-color);
+            border-style: dashed;
+    
+            &::after {
+                position: absolute;
+                top: 0%;
+                left: 50%;
+                content: '';
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--content-hr-image-bg-color);
+                background-image: url('/avatar_trans.png');
+                background-size: 80% 80%;
+                background-position: center;
+                background-repeat: no-repeat;
+                transform: translate(-50%, -50%);
+                border: 2px solid var(--content-hr-border-color);
+            }
+        }
+    
+        .highlight {
+            max-height: 750px;
+            scrollbar-color: #4a4c55 #1a1c25;
+            scrollbar-width: thin;
+            &::-webkit-scrollbar {
+              width: 4px;
+              height: 8px;
+              background-color: var(--content-highlight-scrollbar-color);
+            }
+            &::-webkit-scrollbar-thumb {
+              background-color: var(--content-highlight-scrollbar-thumb-color);
+            }
+        }
+    }
+
+    // aside#panel-wrapper {
+    //     background: var(--panel-bg);
+    // }
+}

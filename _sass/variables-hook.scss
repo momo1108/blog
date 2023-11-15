@@ -1,5 +1,6 @@
 /*
  * The syntax light mode typography colors
+ * from https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_sass/colors/syntax-light.scss
  */
 
  @mixin light-scheme {
@@ -111,17 +112,32 @@
     --timeline-color: rgba(0, 0, 0, 0.075);
     --timeline-node-bg: #c2c6cc;
     --timeline-year-dot-color: #ffffff;
+
+    /* Custom */
+    --content-hr-border-color: #bbb;
+    --content-hr-image-bg-color: #ff9898;
+    --content-highlight-scrollbar-color: #eceeef;
+    --content-highlight-scrollbar-thumb-color: #adaeaf;
+    // --panel-bg: none;
+
   } /* light-scheme */
 
   
 
+
+
+
+
+
 /*
  * The main dark mode styles
+ * from https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_sass/colors/syntax-dark.scss
  */
 
  @mixin dark-scheme {
     /* Framework color */
-    --main-bg: rgb(27, 27, 30);
+    // <a href="https://www.freepik.com/free-photo/starry-night-sky_7061153.htm#query=galaxy&position=42&from_view=search&track=sph&uuid=ea676d05-2fef-40b4-904f-89b78173a918">Image by kjpargeter</a> on Freepik
+    --main-bg: url("/assets/img/background/darkest_container.jpg");
     --mask-bg: rgb(68, 69, 70);
     --main-border-color: rgb(44, 45, 45);
   
@@ -218,6 +234,13 @@
     --timeline-node-bg: rgb(150, 152, 156);
     --timeline-color: rgb(63, 65, 68);
     --timeline-year-dot-color: var(--timeline-color);
+
+    /* Custom */
+    --content-hr-border-color: #555;
+    --content-hr-image-bg-color: #8dabd5;
+    --content-highlight-scrollbar-color: #1a1c25;
+    --content-highlight-scrollbar-thumb-color: #4a4c55;
+    // --panel-bg: rgb(27, 27, 30, 0.64);
   
     .light {
       display: none;
