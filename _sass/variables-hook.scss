@@ -1,3 +1,5 @@
+$font-family-base: 'Noto Sans Demilight', 'Noto Sans KR';
+
 /*
  * The syntax light mode typography colors
  * from https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_sass/colors/syntax-light.scss
@@ -5,7 +7,7 @@
 
  @mixin light-scheme {
     /* Framework color */
-    --main-bg: white;
+    --main-bg: #f7f7f7;
     --mask-bg: #c1c3c5;
     --main-border-color: #f3f3f3;
   
@@ -53,9 +55,9 @@
     --avatar-border-color: #fff9; // avatar 테두리
   
     /* Topbar */
-    --topbar-bg: rgb(255, 255, 255, 0.7);
+    --topbar-bg: #f7f7f7;
     --topbar-text-color: rgb(78, 78, 78);
-    --search-border-color: rgb(240, 240, 240);
+    --search-border-color: #ddd;
     --search-icon-color: #c2c6cc;
     --input-focus-border-color: #b8b8b8;
   
@@ -118,7 +120,6 @@
     --content-hr-image-bg-color: #ff9898;
     --content-highlight-scrollbar-color: #eceeef;
     --content-highlight-scrollbar-thumb-color: #adaeaf;
-    // --panel-bg: none;
 
   } /* light-scheme */
 
@@ -137,7 +138,7 @@
  @mixin dark-scheme {
     /* Framework color */
     // <a href="https://www.freepik.com/free-photo/starry-night-sky_7061153.htm#query=galaxy&position=42&from_view=search&track=sph&uuid=ea676d05-2fef-40b4-904f-89b78173a918">Image by kjpargeter</a> on Freepik
-    --main-bg: url("/assets/img/background/darkest_container.jpg");
+    --main-bg: url("/assets/img/background/darkest2_container.jpg");
     --mask-bg: rgb(68, 69, 70);
     --main-border-color: rgb(44, 45, 45);
   
@@ -240,7 +241,6 @@
     --content-hr-image-bg-color: #8dabd5;
     --content-highlight-scrollbar-color: #1a1c25;
     --content-highlight-scrollbar-thumb-color: #4a4c55;
-    // --panel-bg: rgb(27, 27, 30, 0.64);
   
     .light {
       display: none;
