@@ -193,7 +193,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-
-webrick:
-  headers:
-    Content-Security-Policy: frame-ancestors https://giscus.app; 

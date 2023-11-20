@@ -12,76 +12,107 @@
 @import 'layout/categories';
 @import 'layout/category-tag';
 
-#sidebar {
-    background-size: cover;
-    background-position: center;
-
-    .site-title {
-        font-size: 24px;
-    }
-
-    .nav-link {
-        background: var(--sidebar-nav-bg);
-    }
-
-    .sidebar-bottom {
-        padding: 0px 24px;
-        justify-content: center;
-    }
-}
-
-div#main-wrapper > div.container {
-    background-image: var(--main-bg);
-    background-size: 200px 200px;
-
-    main div.content {
-        word-spacing: 1.5px;
-
-        h1, h2, h3 {
-            font-weight: bold;
-        }
-        hr {
-            position: relative;
-            margin: 70px 0 !important;
-            overflow: visible;
-            opacity: .75;
-            border-color: var(--content-hr-border-color);
-            border-style: dashed;
+html {
+    #sidebar {
+        background-size: cover;
+        background-position: center;
     
-            &::after {
-                position: absolute;
-                top: 0%;
-                left: 50%;
-                content: '';
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background-color: var(--content-hr-image-bg-color);
-                background-image: url('/avatar_trans.png');
-                background-size: 80% 80%;
-                background-position: center;
-                background-repeat: no-repeat;
-                transform: translate(-50%, -50%);
-                border: 2px solid var(--content-hr-border-color);
-            }
+        .site-title {
+            font-size: 24px;
         }
     
-        .highlight {
-            max-height: 750px;
-            scrollbar-color: #4a4c55 #1a1c25;
-            scrollbar-width: thin;
-            &::-webkit-scrollbar {
-              width: 4px;
-              height: 8px;
-              background-color: var(--content-highlight-scrollbar-color);
-            }
-            &::-webkit-scrollbar-thumb {
-              background-color: var(--content-highlight-scrollbar-thumb-color);
-            }
+        .nav-link {
+            background: var(--sidebar-nav-bg);
+        }
+    
+        .sidebar-bottom {
+            padding: 0px 24px;
+            justify-content: center;
         }
     }
+    
+    div#main-wrapper {
+        background-image: var(--main-bg);
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
 
-    // aside#panel-wrapper {
-    //     background: var(--panel-bg);
-    // }
+        .post-navigation{
+            // 부트스트랩 버튼 수정
+            .btn:not(:hover) {
+                background: var(--bootstrap-button-bg);
+            }
+            .btn > p {
+                font-weight: bold;
+            }
+        }
+
+        div.container {
+            #topbar-wrapper {
+                border-radius: 20px;
+
+                search {
+                    background: var(--search-bg);
+                }
+            }
+
+            main div.content {
+                word-spacing: 1.5px;
+        
+                h1, h2, h3 {
+                    font-weight: bold;
+                }
+                h2 {
+                    padding-left: 2px;
+                }
+                h3 {
+                    padding-left: 4px;
+                }
+                hr {
+                    position: relative;
+                    margin: 70px 0 !important;
+                    overflow: visible;
+                    opacity: .75;
+                    border-color: var(--content-hr-border-color);
+                    border-style: dashed;
+            
+                    &::after {
+                        position: absolute;
+                        top: 0%;
+                        left: 50%;
+                        content: '';
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: var(--content-hr-image-bg-color);
+                        background-image: url('/avatar_trans.png');
+                        background-size: 80% 80%;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        transform: translate(-50%, -50%);
+                        border: 2px solid var(--content-hr-border-color);
+                    }
+                }
+            
+                .highlight {
+                    max-height: 750px;
+                    scrollbar-color: #4a4c55 #1a1c25;
+                    scrollbar-width: thin;
+                    &::-webkit-scrollbar {
+                      width: 4px;
+                      height: 8px;
+                      background-color: var(--content-highlight-scrollbar-color);
+                    }
+                    &::-webkit-scrollbar-thumb {
+                      background-color: var(--content-highlight-scrollbar-thumb-color);
+                    }
+                }
+            }
+        
+            // aside#panel-wrapper {
+            //     background: var(--panel-bg);
+            // }
+        }
+    }
 }

@@ -4,5 +4,16 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+# Hyechan's Blog
+프론트엔드 개발을 좋아하는 꿈나무의 블로그입니다.
+
+개발 내용 혹은 개발 도중 발생한 궁금증이나 공부한 내용을 정리해놓은 블로그입니다.
+
+# About Me
+## 사이드 프로젝트
+### 로아플(<https://loaple.site>)
+![로아플메인페이지](/assets/img/captures/8.png){: width="650px" }
+_MMORPG 게임 로스트아크의 플레이를 도와주는 웹 도구 사이트입니다._
+
+## 포트폴리오
+준비중입니다...
