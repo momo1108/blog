@@ -139,4 +139,8 @@ html {
             }
         }
     }
+
+    aside#notification {
+        z-index: 2;
+    }
 }
