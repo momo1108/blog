@@ -57,62 +57,86 @@ html {
                 }
             }
 
-            main div.content {
-                word-spacing: 1.5px;
-        
-                h1, h2, h3 {
-                    font-weight: bold;
+            main {
+                position: relative;
+                z-index: 1;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    top: 10px;
+                    left: 0;
+                    right: 0;
+                    bottom: 10px;
+                    background: var(--main-inner-bg);
                 }
-                h2 {
-                    padding-left: 2px;
-                }
-                h3 {
-                    padding-left: 4px;
-                }
-                hr {
-                    position: relative;
-                    margin: 70px 0 !important;
-                    overflow: visible;
-                    opacity: .75;
-                    border-color: var(--content-hr-border-color);
-                    border-style: dashed;
+
+                div.content {
+                    word-spacing: 1.5px;
             
-                    &::after {
-                        position: absolute;
-                        top: 0%;
-                        left: 50%;
-                        content: '';
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 50%;
-                        background-color: var(--content-hr-image-bg-color);
-                        background-image: url('/avatar_trans.png');
-                        background-size: 80% 80%;
-                        background-position: center;
-                        background-repeat: no-repeat;
-                        transform: translate(-50%, -50%);
-                        border: 2px solid var(--content-hr-border-color);
+                    h1, h2, h3 {
+                        font-weight: bold;
                     }
-                }
-            
-                .highlight {
-                    max-height: 750px;
-                    scrollbar-color: #4a4c55 #1a1c25;
-                    scrollbar-width: thin;
-                    &::-webkit-scrollbar {
-                      width: 4px;
-                      height: 8px;
-                      background-color: var(--content-highlight-scrollbar-color);
+                    h2 {
+                        padding-left: 2px;
                     }
-                    &::-webkit-scrollbar-thumb {
-                      background-color: var(--content-highlight-scrollbar-thumb-color);
+                    h3 {
+                        padding-left: 4px;
+                    }
+                    hr {
+                        position: relative;
+                        margin: 70px 0 !important;
+                        overflow: visible;
+                        opacity: .75;
+                        border-color: var(--content-hr-border-color);
+                        border-style: dashed;
+                
+                        &::after {
+                            position: absolute;
+                            top: 0%;
+                            left: 50%;
+                            content: '';
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            background-color: var(--content-hr-image-bg-color);
+                            background-image: url('/avatar_trans.png');
+                            background-size: 80% 80%;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            transform: translate(-50%, -50%);
+                            border: 2px solid var(--content-hr-border-color);
+                        }
+                    }
+                
+                    .highlight {
+                        max-height: 750px;
+                        scrollbar-color: #4a4c55 #1a1c25;
+                        scrollbar-width: thin;
+                        &::-webkit-scrollbar {
+                        width: 4px;
+                        height: 8px;
+                        background-color: var(--content-highlight-scrollbar-color);
+                        }
+                        &::-webkit-scrollbar-thumb {
+                        background-color: var(--content-highlight-scrollbar-thumb-color);
+                        }
                     }
                 }
             }
         
-            // aside#panel-wrapper {
-            //     background: var(--panel-bg);
-            // }
+            aside#panel-wrapper {
+                
+                div.access {
+                    section#access-lastmod{
+                        // background: #fff4;
+                    }
+                    section:nth-child(2){
+                        // background: #fff4;
+                    }
+                }
+            }
         }
     }
 }
