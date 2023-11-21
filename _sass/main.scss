@@ -123,6 +123,12 @@ html {
                         background-color: var(--content-highlight-scrollbar-thumb-color);
                         }
                     }
+
+                    div {
+                        a.tag {
+                            background: var(--card-bg);
+                        }
+                    }
                 }
             }
         
