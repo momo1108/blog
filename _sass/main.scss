@@ -92,21 +92,35 @@ html {
                 position: relative;
                 z-index: 1;
 
-                &::before {
+                &:has(.post-tail-wrapper)::before {
                     content: "";
                     position: absolute;
                     z-index: -1;
                     top: 10px;
                     left: 0;
                     right: 0;
-                    bottom: 10px;
+                    bottom: -10px;
                     background: var(--main-inner-bg);
+                    border-radius: 10px;
+                }
+
+                &:has(#hyechans-blog) h1.dynamic-title {
+                    display: none;
                 }
 
                 div#post-list {
                     .card-title {
                         font-weight: 700;
                     }
+                }
+
+                header {
+                    h1 {
+                        font-weight: 800;
+                        font-size: 27px;
+                    }
+                    padding-bottom: 10px;
+                    border-bottom: 3px double var(--header-hr-border-color);
                 }
 
                 div.content {
@@ -194,6 +208,30 @@ html {
                                     font-size: 16px;
                                     font-weight: bold;
                                 }
+                            }
+                        }
+                    }
+
+                    &:has(#hyechans-blog) {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        
+                        h1, h2 {
+                            font-weight: 800;
+                        }
+
+                        h2, h3 {
+                            position: relative;
+                            a.anchor {
+                                position: absolute;
+                                height: 22px;
+                                right: -18px;
+                                top: 0;
+                                bottom: 0;
+                                margin: auto 0;
                             }
                         }
                     }
