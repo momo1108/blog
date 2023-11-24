@@ -9,7 +9,7 @@
     // <a href="https://www.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_17729660.htm#query=blue%20background&position=2&from_view=search&track=ais&uuid=4c51aa03-d699-4304-a83c-c12816d881c6">Image by user3802032</a> on Freepik
     --main-bg: url("/assets/img/background/light_container.jpg");
     --mask-bg: #c1c3c5;
-    --main-border-color: rgb(245, 250, 255);
+    --main-border-color: rgb(150, 190, 231);
   
     /* Common color */
     --text-color: #131314;
@@ -20,7 +20,7 @@
     --blockquote-border-color: #eeeeee;
     --blockquote-text-color: #757575;
     --link-color: #0056b2;
-    --link-underline-color: #dee2e6;
+    --link-underline-color: #147be1;
     --button-bg: #ffffff;
     --btn-border-color: #e9ecef;
     --btn-backtotop-color: #686868;
@@ -45,7 +45,7 @@
     --site-subtitle-color: #565656; // 부제
     // <a href="https://www.freepik.com/free-ai-image/ai-generated-water-picture_57309985.htm#query=clear%20sky&position=11&from_view=search&track=ais">Image By freepik</a>
     --sidebar-bg: url("/assets/img/background/light.jpg");
-    --sidebar-border-color: #fff9; // sns 링크 테두리
+    --sidebar-border-color: #69d7ffc4; // sns 링크 테두리
     --sidebar-muted-color: #242424; // nav 글색깔
     --sidebar-active-color: #1d1d1d;
     --sidebar-nav-bg: #fff5; // 메뉴 bg
@@ -69,9 +69,11 @@
     /* Posts */
     --toc-highlight: #0550ae;
     --btn-share-color: gray;
-    --btn-share-hover-color: #0d6efd;
-    --card-bg: #f7faff;
-    --card-hovor-bg: #d3e1ff;
+    --btn-share-hover-color: #0000be;
+    --card-bg: linear-gradient(217deg, rgba(244, 235, 255, 0.8), rgba(244, 235, 255,0) 70.71%),
+    linear-gradient(127deg, rgba(238, 247, 255, 0.8), rgba(238, 247, 255,0) 40.71%),
+    linear-gradient(336deg, rgba(255,255,255,.8), rgba(255,255,255,0) 150.71%);
+    --card-hovor-bg: rgb(184, 184, 255);
     --card-shadow: rgb(104, 104, 104, 0.05) 0 2px 6px 0,
       rgba(211, 209, 209, 0.15) 0 0 0 1px;
     --footnote-target-bg: lightcyan;
@@ -84,7 +86,7 @@
     --prompt-text-color: rgb(46, 46, 46, 0.77);
     --prompt-tip-bg: rgb(123, 247, 144, 0.2);
     --prompt-tip-icon-color: #03b303;
-    --prompt-info-bg: #c1e7f8;
+    --prompt-info-bg: #b4e7ff;
     --prompt-info-icon-color: #0070cb;
     --prompt-warning-bg: rgb(255, 243, 205);
     --prompt-warning-icon-color: #ef9c03;
@@ -98,7 +100,7 @@
     --search-tag-bg: #f8f9fa;
   
     [class^='prompt-'] {
-      --link-underline-color: rgb(219, 216, 216);
+      --link-underline-color: #0864c1;
     }
   
     .dark {
