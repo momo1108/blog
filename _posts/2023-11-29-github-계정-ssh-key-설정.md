@@ -14,7 +14,8 @@ tags: [github, ssh]
 > **ssh key 가 사용되고 있는 위치 확인**
 >
 > ```bash
-> ssh -T -ai ~/.ssh/id_rsa git@github.com
+> ssh -T git@github.com # github 연결 확인
+> ssh -T -ai ~/.ssh/id_rsa git@github.com # 특정 key 연결 확인
 > ```
 > 명령어를 통해, key가 사용되고 있는 github 계정 / 레포를 확인할 수 있다.
 >
