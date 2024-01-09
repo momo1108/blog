@@ -5,8 +5,9 @@
 
  @mixin dark-scheme {
     /* Framework color */
-    // Image by <a href="https://www.freepik.com/free-photo/drops-paint-water_2254494.htm#page=6&query=skyblue%20black%20background&position=49&from_view=search&track=ais&uuid=aaeff77b-1a62-4b25-98cd-a055e7b885da">Freepik</a>
-    --main-bg: url("/assets/img/background/dark_container.jpg");
+    // Image1 by <a href="https://www.freepik.com/free-photo/drops-paint-water_2254494.htm#page=6&query=skyblue%20black%20background&position=49&from_view=search&track=ais&uuid=aaeff77b-1a62-4b25-98cd-a055e7b885da">Freepik</a>
+    // Image2 by <a href="https://www.freepik.com/free-photo/beeautiful-landscape-with-mountain-starry-sky_44365194.htm#page=5&query=night%20sky&position=20&from_view=search&track=ais&uuid=c831ad00-e25a-4656-8ec9-0fad04715914">Freepik</a>
+    --main-bg: url("/assets/img/background/dark_container2.jpg");
     --mask-bg: rgb(68, 69, 70);
     --main-border-color: rgb(44, 45, 45);
   
