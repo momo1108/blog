@@ -126,7 +126,10 @@ html {
                 div.content {
                     word-spacing: 1.5px;
                     font-size: 14px;
-                    line-height: 1.5;
+
+                    &>p {
+                        padding-left: 6px;
+                    }
 
                     h1 {
                         font-weight: 700;
@@ -246,15 +249,33 @@ html {
 
                 div.access {
                     section#access-lastmod {
-                        // background: #fff4;
+                        ul.content {
+                            // background: #ffffff66;
+                            border-radius: 4px;
+                            padding: 8px 10px 8px 10px !important;
+                        }
                     }
 
                     section:nth-child(2) {
-                        // background: #fff4;
+                        div {
+                            // background: #ffffff66;
+                            border-radius: 4px;
+                            padding: 8px 10px 8px 10px !important;
+                            gap: 4px;
+                            
+                            a.post-tag {
+                                margin: 0 !important;
+                            }
+                        }
                         a.post-tag:not(:hover) {
                             background: var(--card-bg);
                         }
                     }
+                }
+
+                section#toc-wrapper {
+                    border-radius: 0px 4px 4px 0px;
+                    // background: #fff6;
                 }
             }
         }

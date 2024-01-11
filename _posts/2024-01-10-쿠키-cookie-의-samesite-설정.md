@@ -41,27 +41,26 @@ Firefox 브라우저의 경우에도 동일한 조치를 한다는 공지가 있
 
 기존에 사용되던 SameSite 의 값은 `None` 값이었다.
 
-SameSite의 값에 따른 동작방식은 Mozilla에서 긁어와봤다.
+SameSite의 값에 따른 동작방식은 Mozilla에서 긁어와서 해석해봤다.
 
+**SameSite 란?**
+Cookie 의 cross-site requests 사용 여부를 정할 수 있다. 이를 통해 cross-site request forgery attacks(CSRF) 를 방지할 수 있다.
 
-
-Controls whether or not a cookie is sent with cross-site requests, providing some protection against cross-site request forgery attacks (CSRF).
-
-The possible attribute values are:
+사용 가능한 설정값들은 다음과 같다.
 
 Strict
+: 브라우저가 same-site requests 용도로만 cookie를 전송한다. 즉, cookie를 설정한 사이트와 동일한 사이트에서만 requests가 발생한다. 만약 request가 다른 domain 이나 scheme(같은 domain 일지라도)으로부터 발생하면, `SameSite=Strict` 값을 사용한 않은 cookie는 전송되지 않는다.
 
-    Means that the browser sends the cookie only for same-site requests, that is, requests originating from the same site that set the cookie. If a request originates from a different domain or scheme (even with the same domain), no cookies with the SameSite=Strict attribute are sent.
 Lax
+: cookie가 cross-site requests(image 나 frame 불러오기 등) 에는 전송하지 않고, 외부 site 에서 해당 site 로 navigate 됐을 때(ex. 링크를 통한 접속) 전송된다. SameSite 속성을 따로 설정하지 않는 경우의 기본 동작 방식이다.
 
-    Means that the cookie is not sent on cross-site requests, such as on requests to load images or frames, but is sent when a user is navigating to the origin site from an external site (for example, when following a link). This is the default behavior if the SameSite attribute is not specified.
 None
+: 브라우저가 same site 그리고 cross-site request에 모두 cookie를 전송한다. 이 속성값을 사용하려면 `Secure` 속성값도 설정해야 하는데, `SameSite=None; Secure` 처럼 설정하면 된다. 그렇지 않으면 아래와 같은 에러가 찍힌다.
 
-    means that the browser sends the cookie with both cross-site and same-site requests. The Secure attribute must also be set when setting this value, like so SameSite=None; Secure. If Secure is missing an error will be logged:
+> Cookie "myCookie" rejected because it has the "SameSite=None" attribute but is missing the "secure" attribute.
+> 
+> This Set-Cookie was blocked because it had the "SameSite=None" attribute but did not have the "Secure" attribute, which is required in order to use "SameSite=None".
+{: .prompt-danger }
 
-    Cookie "myCookie" rejected because it has the "SameSite=None" attribute but is missing the "secure" attribute.
-
-    This Set-Cookie was blocked because it had the "SameSite=None" attribute but did not have the "Secure" attribute, which is required in order to use "SameSite=None".
-
-    Note: A Secure cookie is only sent to the server with an encrypted request over the HTTPS protocol. Note that insecure sites (http:) can't set cookies with the Secure directive, and therefore can't use SameSite=None.
-
+> **Note:** Secure cookie 의 경우 HTTPS protocol로 암호화된 request에서만 전송이 가능하다. http 사이트에서는 Secure가 사용이 불가능하므로, SameSite 값으로 None은 사용이 불가능하다.
+{: .prompt-info }
