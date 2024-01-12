@@ -64,3 +64,7 @@ None
 
 > **Note:** Secure cookie 의 경우 HTTPS protocol로 암호화된 request에서만 전송이 가능하다. http 사이트에서는 Secure가 사용이 불가능하므로, SameSite 값으로 None은 사용이 불가능하다.
 {: .prompt-info }
+
+위 설정들이 어떻게 쓰이게된 이유는 CSRF 때문이라고 한다. 관련된 내용은 정리가 잘 된 블로그가 있으니 참조하고, 나중에 따로 정리해야겠다.
+
+<https://seob.dev/posts/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EC%BF%A0%ED%82%A4%EC%99%80-SameSite-%EC%86%8D%EC%84%B1/>{:target="_blank"}

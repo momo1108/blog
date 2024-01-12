@@ -7,9 +7,10 @@
     /* Framework color */
     // Image1 by <a href="https://www.freepik.com/free-photo/drops-paint-water_2254494.htm#page=6&query=skyblue%20black%20background&position=49&from_view=search&track=ais&uuid=aaeff77b-1a62-4b25-98cd-a055e7b885da">Freepik</a>
     // Image2 by <a href="https://www.freepik.com/free-photo/beeautiful-landscape-with-mountain-starry-sky_44365194.htm#page=5&query=night%20sky&position=20&from_view=search&track=ais&uuid=c831ad00-e25a-4656-8ec9-0fad04715914">Freepik</a>
-    --main-bg: url("/assets/img/background/dark_container2.jpg");
+    // Image3 by <a href="https://www.freepik.com/free-vector/gradient-black-background-with-wavy-lines_19852122.htm#page=2&query=dark%20background&position=4&from_view=search&track=ais&uuid=c0ba3ece-4bfd-4abc-9d54-3cfa7eed3f50">Freepik</a>
+    --main-bg: url("/assets/img/background/dark_container3.jpg");
     --mask-bg: rgb(68, 69, 70);
-    --main-border-color: rgb(44, 45, 45);
+    --main-border-color: rgb(88, 90, 90);
   
     /* Common color */
     --text-color: rgb(175, 176, 177);
@@ -72,8 +73,8 @@
     --footnote-target-bg: rgb(63, 81, 181);
     --btn-share-color: #6c757d;
     --btn-share-hover-color: #bfc1ca;
-    --card-bg: #0f0f0f99;
-    --card-hovor-bg: #464d51;
+    --card-bg: #0f0f0fcc;
+    --card-hovor-bg: #292b2c;
     --card-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0,
       rgb(137, 135, 135, 0.24) 0 0 0 1px;
     --kbd-wrap-color: #6a6a6a;
@@ -112,6 +113,7 @@
     --content-highlight-scrollbar-color: #1a1c25;
     --content-highlight-scrollbar-thumb-color: #4a4c55;
     --search-bg: #3a3a3a;
+    --toc-wrapper-border-color: rgb(88, 90, 90);
   
     .light {
       display: none;

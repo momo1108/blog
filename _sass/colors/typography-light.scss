@@ -7,9 +7,10 @@
  @mixin light-scheme {
     /* Framework color */
     // <a href="https://www.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_17729660.htm#query=blue%20background&position=2&from_view=search&track=ais&uuid=4c51aa03-d699-4304-a83c-c12816d881c6">Image by user3802032</a> on Freepik
-    --main-bg: url("/assets/img/background/light_container.jpg");
+    // Image by <a href="https://www.freepik.com/free-vector/watercolor-pastel-color-pattern-design_26559530.htm#query=light%20green%20background&position=21&from_view=search&track=ais&uuid=32a56f38-aa29-4cf8-b5f1-906249988df4">Freepik</a>
+    --main-bg: url("/assets/img/background/light_container5.jpg");
     --mask-bg: #c1c3c5;
-    --main-border-color: rgb(150, 190, 231);
+    --main-border-color: rgb(137, 212, 130);
   
     /* Common color */
     --text-color: #090909;
@@ -44,13 +45,14 @@
     --site-title-color: #454545; // 제목
     --site-subtitle-color: #565656; // 부제
     // <a href="https://www.freepik.com/free-ai-image/ai-generated-water-picture_57309985.htm#query=clear%20sky&position=11&from_view=search&track=ais">Image By freepik</a>
-    --sidebar-bg: url("/assets/img/background/light.jpg");
-    --sidebar-border-color: #69d7ffc4; // sns 링크 테두리
+    // <a href="https://www.freepik.com/free-photo/green-grass_1036776.htm#page=2&query=grass&position=11&from_view=search&track=sph&uuid=296c072c-b4fe-45ae-a60f-6b18e00447be">Image by kjpargeter</a> on Freepik
+    --sidebar-bg: url("/assets/img/background/light_sidebar3.jpg");
+    --sidebar-border-color: #80e079c0; // sns 링크 테두리
     --sidebar-muted-color: #242424; // nav 글색깔
     --sidebar-active-color: #1d1d1d;
     --sidebar-nav-bg: #fff5; // 메뉴 bg
     --sidebar-hover-bg: #fffb; // 메뉴, sns 링크 호버 bg
-    --sidebar-btn-bg: #fff5; // sns 링크 bg
+    --sidebar-btn-bg: #fffa; // sns 링크 bg
     --sidebar-btn-color: #5e5e5e; // social icon 색깔
     --avatar-border-color: #fff9; // avatar 테두리
   
@@ -67,7 +69,7 @@
     --btn-paginator-hover-color: var(--sidebar-bg);
   
     /* Posts */
-    --toc-highlight: #0550ae;
+    --toc-highlight: #0ac200;
     --btn-share-color: gray;
     --btn-share-hover-color: #0000be;
     --card-bg: linear-gradient(217deg, rgba(244, 235, 255, 0.8), rgba(244, 235, 255,0) 70.71%),
@@ -124,5 +126,6 @@
     --content-highlight-scrollbar-color: #eceeef;
     --content-highlight-scrollbar-thumb-color: #adaeaf;
     --search-bg: #fafafa;
+    --toc-wrapper-border-color: rgb(137, 212, 130);
 
   } /* light-scheme */

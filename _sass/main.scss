@@ -243,6 +243,22 @@ html {
                         }
                     }
                 }
+
+                // 정보 탭을 위한 CSS
+                div.content:has(h1#hyechans-blog) {
+                    h1 {
+                        margin: 16px 0px 16px 0px !important;
+                    }
+                    h2 {
+                        margin: 12px 0px 12px 0px !important;
+                    }
+                    h3 {
+                        margin: 10px 0px 10px 0px !important;
+                    }
+                    &>p {
+                        margin-bottom: 8px !important;
+                    }
+                }
             }
 
             aside#panel-wrapper {
@@ -274,6 +290,7 @@ html {
                 }
 
                 section#toc-wrapper {
+                    border-left: 1px solid var(--toc-wrapper-border-color);
                     border-radius: 0px 4px 4px 0px;
                     // background: #fff6;
                 }
