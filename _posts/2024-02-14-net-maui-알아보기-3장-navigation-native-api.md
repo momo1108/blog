@@ -234,5 +234,5 @@ IConnectivity 서비스를 등록할 때 `Connectivity.Current`(Connectivity 클
 ---
 
 ## Resources
-- .NET MAUI 도큐먼트 : https://learn.microsoft.com/ko-kr/dotnet/maui/?view=net-maui-8.0
-- 좋은 .NET MAUI 라이브러리, 리소스가 정리된 깃헙(awesome-dotnet-maui) : https://github.com/jsuarezruiz/awesome-dotnet-maui
+- .NET MAUI 도큐먼트 : <https://learn.microsoft.com/ko-kr/dotnet/maui/?view=net-maui-8.0>{:target="_blank"}
+- 좋은 .NET MAUI 라이브러리, 리소스가 정리된 깃헙(awesome-dotnet-maui) : <https://github.com/jsuarezruiz/awesome-dotnet-maui>{:target="_blank"}
