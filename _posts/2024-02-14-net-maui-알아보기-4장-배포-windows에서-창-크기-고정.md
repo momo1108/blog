@@ -113,7 +113,7 @@ namespace TestMauiApp.WinUI
 ![build and deploy in MAUI](/assets/img/captures/4_build-and-deploy-steps.png)
 
 > Android용 .NET MAUI 앱을 게시할 때 APK(Android 패키지) 또는 AAB(Android 앱 번들) 파일을 생성합니다. APK는 Android 디바이스에 앱을 설치하는 데 사용되며, AAB는 Google Play에 앱을 게시하는 데 사용됩니다.
-{ :prompt-info }
+{: .prompt-info }
 
 배포 준비 단계는 별다를게 없고, 차이점은 배포 방법에 있다.
 
@@ -179,7 +179,7 @@ Microsoft Store 와 Windows 에서 앱이 어떻게 display 되는지 영향을 
 도큐먼트에 명시된 참조사항
 
 > The Manifest Designer for .NET MAUI projects can't edit app capabilities. For the time being, you'll need to use the XML editor.
-{ :prompt-info }
+{: .prompt-info }
 
 좀더 자세한 앱 매니페스트 세팅이 궁금하다면 [App manifest schema reference](https://learn.microsoft.com/en-us/uwp/schemas/appxpackage/uapmanifestschema/root-elements) 도큐먼트를 참조하자.
 
@@ -231,11 +231,11 @@ Microsoft Store 와 Windows 에서 앱이 어떻게 display 되는지 영향을 
 
 > .NET MAUI Solution을 배포할 때 사용하는 `dotnet publish` 커맨드는 우리 Solution 의 각 프로젝트들을 따로 배포하기 때문에, 우리 Solution 에 다른 프로젝트 타입들을 추가한 경우 문제가 발생할 수 있다. 따라서 `dotnet publish` 커맨드는 우리 .NET MAUI 프롲게트에 scope 되어야 한다.
 > 원문 : Attempting to publish a .NET MAUI solution will result in the `dotnet publish` command attempting to publish each project in the solution individually, which can cause issues when you've added other project types to your solution. Therefore, the `dotnet publish` command should be scoped to your .NET MAUI app project.
-{ :prompt-warning }
+{: .prompt-warning }
 
 > .NET 8 버전에서 `dotnet publish` 커맨드는 기본적으로 `Release` configuration 으로 설정되어있다. 따라서 커맨드라인 명령어에서 이 build configuration 은 생략 가능하다.
 > 원문 : In .NET 8, the `dotnet publish` command defaults to the `Release` configuration. Therefore, the build configuration can be omitted from the command line.
-{ :prompt-tip }
+{: .prompt-tip }
 
 배포과정에서 앱이 빌드되고, 실행 파일이 `bin\Release\net8.0-windows10.0.19041.0\win10-x64\publish` 폴더에 복사된다. 이 폴더 안에는 `exe` 파일이 존재하며 이것이 빌드된 앱이다. 이 실행파일로 앱을 실행할 수 있고, 폴더 전체를 복사해서 다른 기기에서 실행할 수도 있다.
 
