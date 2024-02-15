@@ -128,23 +128,41 @@ namespace TestMauiApp.WinUI
 Solution Explorer 에서 프로젝트를 우클릭하고 속성(Properties) 메뉴로 들어가자.
 
 1. Android - Options - Android Package Format 의 Release 항목도 `apk` 로 변경해주자.
-    ![5_build-and-deploy-steps.png](/assets/img/captures/5_ad-hoc-change-package-format.png)
+
+    ![5_build-and-deploy-steps.png](/assets/img/captures/5_ad-hoc-change-package-format.png){: .normal }
+
 2. 디버그 대상을 안드로이드 에뮬레이터에 생성한 가상 기기로 설정하자(ex. Pixel 5 - API 30)
-    ![6_build-and-deploy-steps.png](/assets/img/captures/6_select-android-deployment.png)
+
+    ![6_build-and-deploy-steps.png](/assets/img/captures/6_select-android-deployment.png){: .normal }
+
 3. Debug 항목을 드랍다운을 눌러서 Release 로 변경해준다.
-    ![7_release-configuration.png](/assets/img/captures/7_release-configuration.png)
+
+    ![7_release-configuration.png](/assets/img/captures/7_release-configuration.png){: .normal }
+
 4. Solution Explorer 에서 프로젝트 우클릭 - Publish 선택하면 Archive Manager 가 앱을 Archive 한다.(노트북에서 한 4~5분 걸린듯)
-    ![8_publish-menu-item.png](/assets/img/captures/8_publish-menu-item.png)
+
+    ![8_publish-menu-item.png](/assets/img/captures/8_publish-menu-item.png){: width="550" .normal }
+
 5. Archiving이 끝나면 Distribute... 버튼 클릭
-    ![9_archive-manager-distribute.png](/assets/img/captures/9_archive-manager-distribute.png)
+
+    ![9_archive-manager-distribute.png](/assets/img/captures/9_archive-manager-distribute.png){: .normal }
+
 6. Select Channel 창에서 Ad Hoc 선택
-    ![10_distribution-select-channel-ad-hoc.png](/assets/img/captures/10_distribution-select-channel-ad-hoc.png)
+
+    ![10_distribution-select-channel-ad-hoc.png](/assets/img/captures/10_distribution-select-channel-ad-hoc.png){: width="550" .normal }
+
 7. Signing Identity 선택창에서 나의 Signing Identity 를 새로 만든다.
-    ![11_create-new-ad-hoc-signing-identity.png](/assets/img/captures/11_create-new-ad-hoc-signing-identity.png)
+
+    ![11_create-new-ad-hoc-signing-identity.png](/assets/img/captures/11_create-new-ad-hoc-signing-identity.png){: width="550" .normal }
+
 8. 입력 내용은 본인 마음대로 입력하고 생성하자. 난 패스워드도 똑같이 mauitest 로 설정함.
-    ![12_create-android-keystore.png](/assets/img/captures/12_create-android-keystore.png)
+
+    ![12_create-android-keystore.png](/assets/img/captures/12_create-android-keystore.png){: width="550" .normal }
+
 9. 생성한 Signing Identity 선택 후 Save As 클릭
-    ![13_save-ad-hoc.png](/assets/img/captures/13_save-ad-hoc.png)
+
+    ![13_save-ad-hoc.png](/assets/img/captures/13_save-ad-hoc.png){: width="550" .normal }
+
 10. 저장할 위치와 이름을 잘 확인 후 저장 - 패스워드 입력
 11. 안드로이드 기기의 보안 설정(내 경우 삼성 갤럭시 S8)은 설정 - 생체 인식 및 보안 - 출처를 알 수 없는 앱 설치 에서 `내 파일` 허용
 12. 생성된 apk 파일은 핸드폰으로 옮겨서 본인 안드로이드 기기의 탐색기(내 핸드폰은 `내 파일`)에서 직접 실행하면 설치가 된다.
@@ -185,23 +203,40 @@ Microsoft Store 와 Windows 에서 앱이 어떻게 display 되는지 영향을 
 
 #### Visual Studio 를 사용하여 폴더에 배포하기
 1. `Solution Explorer` 에서 프로젝트 우클릭 후 `Publish` 선택
-    ![vs-right-click-publish.png](/assets/img/captures/14_vs-right-click-publish.png)
+
+    ![vs-right-click-publish.png](/assets/img/captures/14_vs-right-click-publish.png){: .normal }
+
 2. **Select distribution method** : 실행된 창에서 `Sideloading` 선택 후 `Next` 클릭(Enable automatic updates 선택 시 뒤에서 설치 파일 경로를 명시해주어야 한다.)
-    ![vs-1-how-distribute.png](/assets/img/captures/15_vs-1-how-distribute.png)
+
+    ![vs-1-how-distribute.png](/assets/img/captures/15_vs-1-how-distribute.png){: width="550" .normal }
+
 3. **Select signing method** : `Yes, select a certificate` 선택 후 `Create` 버튼 클릭(임시 테스트용 인증서 생성)
-    ![vs-2_1-create-cert.png](/assets/img/captures/16_vs-2-cert-sign.png)
+
+    ![vs-2_1-create-cert.png](/assets/img/captures/16_vs-2-cert-sign.png){: width="550" .normal }
+
 4. **Create a Self-Signed Test Certificate** : 퍼블리셔 이름과 인증서 파일의 패스워드 설정 후 `OK` 클릭
-    ![vs-2_1-create-cert.png](/assets/img/captures/17_vs-2_1-create-cert.png)
+
+    ![vs-2_1-create-cert.png](/assets/img/captures/17_vs-2_1-create-cert.png){: width="550" .normal }
+
 5. 다시 **Select signing method** 창으로 돌아와서 인증서 옆의 `Trust` 버튼 클릭 후 `Next` 클릭
-    ![trust_and_select_cert.png](/assets/img/captures/18_trust_and_select_cert.png)
+
+    ![trust_and_select_cert.png](/assets/img/captures/18_trust_and_select_cert.png){: width="550" .normal }
+
 6. **Select and configure packages** : 앱 패키지의 버전을 설정한다.(기본은 `0.0.0.0`) `Automatically Increment` 체크박스는 publish 될 때 마다 버전을 올려준다.
+
     `Publishing profile` 선택 후 `<New..>` 선택
-    ![vs-4-configure.png](/assets/img/captures/19_vs-4-configure.png)
+
+    ![vs-4-configure.png](/assets/img/captures/19_vs-4-configure.png){: width="550" .normal }
+
 7. **Create a new MSIX Publish Profile** : Configuration 을 `Release` 로 선택하고, Target Runtime 을 `win10-x64` 로 설정 후 `OK` 클릭
-    ![vs-4_1-publish-profile.png](/assets/img/captures/20_vs-4_1-publish-profile.png)
+
+    ![vs-4_1-publish-profile.png](/assets/img/captures/20_vs-4_1-publish-profile.png){: .normal }
+
     만약 이전에 `Enable automatic updates` 을 선택한 경우 여기서 installer 위치 설정이 진행된다.
+
 8. 다시 **Select and configure packages** 창으로 돌아와서 `Create` 버튼 클릭하면 끝.
-    ![vs-5-configure-done.png](/assets/img/captures/21_vs-5-configure-done.png)
+
+    ![vs-5-configure-done.png](/assets/img/captures/21_vs-5-configure-done.png){: width="550" .normal }
 
 위 방식의 한계점은 다음과 같다.
 - 게시된 앱은 게시 폴더에서 실행 파일로 직접 실행하려고 하면 작동하지 않습니다.
@@ -212,11 +247,12 @@ Microsoft Store 와 Windows 에서 앱이 어떻게 display 되는지 영향을 
 
 아래의 `<PropertyGroup>` 노드를 프로젝트 파일에 추가한다. 이 노드는 타겟 프레임워크가 `Windows` 이고 `Release` 로 설정됐을때만 처리된다.
 
-```xaml
+```xml
 <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(RuntimeIdentifierOverride)' != ''">
     <RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
 </PropertyGroup>
 ```
+{: file='TestMauiApp.csproj' }
 
 이제 Visual Studio 의 개발자 콘솔에서 프로젝트 폴더로 이동한다. 이후 `dotnet publish` 명령어를 실행하는데, 옵션은 아래를 참고하자.
 
@@ -243,7 +279,7 @@ Microsoft Store 와 Windows 에서 앱이 어떻게 display 되는지 영향을 
 
 도큐먼트에서 제공되는 예시 명령어는 다음과 같다.
 
-```Console
+```shell
 dotnet publish -f net8.0-windows10.0.19041.0 -c Release -p:RuntimeIdentifierOverride=win10-x64 -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true
 ```
 

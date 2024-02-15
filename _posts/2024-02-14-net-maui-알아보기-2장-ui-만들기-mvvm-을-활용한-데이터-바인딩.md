@@ -18,7 +18,7 @@ TodoList 를 만들면서 위의 내용을 수행해보자.
 
 MainPage.xaml 을 수정해서 홈페이지를 변경해보자.
 
-```xaml
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -70,6 +70,7 @@ MainPage.xaml 을 수정해서 홈페이지를 변경해보자.
     </Grid>
 </ContentPage>
 ```
+{: file='MainPage.xaml' }
 
 일단 TodoList를 출력할 세번째 행인 `CollectionView` 도 스크롤을 지원하므로 `ScrollView` 를 삭제하고 새로운 화면을 만들었다. 
 
@@ -226,23 +227,25 @@ Add 와 Delete 메서드 모두 ObservableProperty 인 Items 에 변화를 일�
 
 이제 MainPage.xaml 에 변경된 내용에 맞게 코드를 수정해보자.
 
-```xaml
+```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestMauiApp.MainPage"
              xmlns:viewmodel="clr-namespace:TestMauiApp.ViewModel"
              x:DataType="viewmodel:MainViewModel">
 ```
+{: file='MainPage.xaml' }
 
 ContentPage 에 ViewModel 컨텍스트를 추가하고, x:DataType 을 통해 ContentPage 와 ViewModel 을 연결한다.
 
 TodoList에 해당되는 CollectionView 에 데이터를 바인딩한다.
 
-```xaml
+```xml
 <CollectionView Grid.Row="2"
                 Grid.ColumnSpan="2"
                 ItemsSource="{Binding Items}">
 ```
+{: file='MainPage.xaml' }
 
 CollectionView.ItemsSource 을 삭제하고 대신 속성값으로 바인딩을 한다.
 
@@ -250,13 +253,14 @@ CollectionView.ItemsSource 내부에 설정했었던 Type 을 이제 템플릿�
 
 DataTemplate은 MainViewModel 이 아닌 string 이 bound 돼있기 때문이다.
 
-```xaml
+```xml
 <DataTemplate x:DataType="{x:Type x:String}">
 ```
+{: file='MainPage.xaml' }
 
 이제 Entry 와 Button 에 각각 text 필드와 Add 이벤트핸들러를 바인딩하자. 각각 `Text` 속성과 `Command` 속성을 사용하면 된다.
 
-```xaml
+```xml
 <Entry Placeholder="Enter task"
         Grid.Row="1"
         Text="{Binding Text}"/>
@@ -265,17 +269,19 @@ DataTemplate은 MainViewModel 이 아닌 string 이 bound 돼있기 때문이다
         Grid.Row="1"
         Grid.Column="1" />
 ```
+{: file='MainPage.xaml' }
 
 마지막으로 SwipeItem 에 Delete 이벤트핸들러를 바인딩하는데, 해당 요소가 CollectionView, DataTemplate 의 하위 요소이므로 Binding 시에 상위 요소들의 바인딩값(Items)나 타입(x:Type x:String)이 아닌 MainViewModel 의 Delete 이벤트핸들러를 바인딩하도록 명시해줘야 한다.
 
 또 이벤트핸들러에 전달될 값을 `CommandParameter` 속성에 명시해준다.
 
-```xaml
+```xml
 <SwipeItem Text="Delete"
     BackgroundColor="Red"
     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
     CommandParameter="{Binding .}"/>
 ```
+{: file='MainPage.xaml' }
 
 이제 MainPage 의 code behind 에서 Context 를 바인딩한다.
 

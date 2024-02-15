@@ -54,7 +54,7 @@ RegisterRoute 함수를 통해 페이지의 경로를 등록한다.
 
 대신 Label 을 감싸는 Frame 자체에 클릭을 인식하는 built-in 기능(Frame.GestureRecognizers)을 추가해주자. 이 기능은 다양한 제스쳐를 지원한다.(Tap, Swipe, Pinch, Pan, Drop, Drag, ...)
 
-```xaml
+```xml
 <Frame>
     <Frame.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TapCommand}"
@@ -64,6 +64,7 @@ RegisterRoute 함수를 통해 페이지의 경로를 등록한다.
         FontSize="20" />
 </Frame>
 ```
+{: file='MainPage.xaml' }
 
 이벤트핸들러는 Delete와 똑같은 방법으로 등록한다. 이제 MainViewModel 에서 라우팅을 담당할 Tap 메서드를 만들어보자.
 
@@ -113,7 +114,7 @@ DetailViewModel 에 간단하게 `[QueryProperty("사용할이름", "전달받�
 
 마찬가지로 DetailPage 에 ViewModel 설정을 하고 바인딩을하자.
 
-```xaml
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -130,6 +131,7 @@ DetailViewModel 에 간단하게 `[QueryProperty("사용할이름", "전달받�
     </VerticalStackLayout>
 </ContentPage>
 ```
+{: file='DetailPage.xaml' }
 
 ## Native API 기능
 Native API 는 말하자면 각 플랫폼(Windows, Mac, Android, iOS)에 특화된 것들이라고 할 수 있다.

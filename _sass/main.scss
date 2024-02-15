@@ -126,6 +126,25 @@ html {
                 div.content {
                     word-spacing: 1.5px;
                     font-size: 14px;
+                    
+                    .table-wrapper{
+                        &>table {
+                            thead tr {
+                                background-color: var(--tbh-bg);
+                            }
+                            tbody tr:nth-child(2n+2) {
+                                background-color: var(--tb-even-bg);
+                            }
+                        }
+
+                        th, td {
+                            white-space: normal;
+                        }
+                        td {
+                            padding: 10px 16px;
+                        }
+                    }
+
 
                     &>p {
                         padding-left: 6px;
@@ -175,7 +194,7 @@ html {
 
                     .highlight {
                         max-height: 750px;
-                        scrollbar-color: #4a4c55 #1a1c25;
+                        scrollbar-color: var(--content-highlight-scrollbar-thumb-color) var(--content-highlight-scrollbar-color);
                         scrollbar-width: thin;
 
                         &::-webkit-scrollbar {
