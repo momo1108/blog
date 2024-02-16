@@ -150,11 +150,7 @@ html {
                         padding-left: 6px;
                     }
 
-                    h1 {
-                        font-weight: 700;
-                    }
-
-                    h2, h3, h4 {
+                    h1, h2, h3, h4 {
                         font-weight: 800;
                     }
 
@@ -179,8 +175,8 @@ html {
                             top: 0%;
                             left: 50%;
                             content: '';
-                            width: 40px;
-                            height: 40px;
+                            width: 30px;
+                            height: 30px;
                             border-radius: 50%;
                             background-color: var(--content-hr-image-bg-color);
                             background-image: url('/avatar_trans.png');
@@ -190,6 +186,10 @@ html {
                             transform: translate(-50%, -50%);
                             border: 2px solid var(--content-hr-border-color);
                         }
+                    }
+
+                    img {
+                        border: var(--content-img-border);
                     }
 
                     .highlight {
