@@ -189,7 +189,7 @@ html {
                     }
 
                     img {
-                        border: var(--content-img-border);
+                        box-shadow: var(--content-img-shadow);
                     }
 
                     .highlight {

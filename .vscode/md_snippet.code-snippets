@@ -26,7 +26,7 @@
 		"scope": "md,markdown",
 		"prefix": "momowa",
 		"body": [
-			"{: width='$1' $2 }"
+			"{: width='$1' ${2|.normal|} }"
 		],
 		"description": "set image width and align"
 	}
