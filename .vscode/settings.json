@@ -1,11 +1,11 @@
 {
     "[markdown]": {
         "editor.quickSuggestions": {
-          "other": true,
+          "other": false,
           "comments": false,
-          "strings": true
+          "strings": false,
         },
         "editor.suggest.showWords": false,
-        "editor.suggest.showSnippets": true
+        "editor.suggest.showSnippets": true,
     }
 }

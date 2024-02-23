@@ -8,15 +8,15 @@
 	// Example:
 	"Captured Image Assets Path": {
 		"scope": "md,markdown",
-		"prefix": "momoc",
+		"prefix": "-c",
 		"body": [
 			"/assets/img/captures/"
 		],
-		"description": "path string to captured image files"
+		"description": "path string to captured image files",
 	},
 	"Image Assets Path": {
 		"scope": "md,markdown",
-		"prefix": "momoi",
+		"prefix": "-i",
 		"body": [
 			"/assets/img/"
 		],
@@ -24,10 +24,18 @@
 	},
 	"Set Image Width and Align": {
 		"scope": "md,markdown",
-		"prefix": "momowa",
+		"prefix": "-wa",
 		"body": [
 			"{: width='$1' ${2|.normal|} }"
 		],
 		"description": "set image width and align"
+	},
+	"Open Link With New Tab": {
+		"scope": "md,markdown",
+		"prefix": "-nt",
+		"body": [
+			"{: target='_blank' }"
+		],
+		"description": "open link with new tab"
 	}
 }
