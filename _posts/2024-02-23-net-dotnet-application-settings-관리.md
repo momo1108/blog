@@ -56,3 +56,8 @@ Properties.Settings.Default.Save();
 
 ## 마치며
 `Settings` 클래스로 appliaction settings 에 접근하고 싶다면 도큐먼트 [Manage application settings (.NET)](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/advanced/application-settings-overview?view=netframeworkdesktop-4.8){: target='_blank' } 를 참조.
+
+---
+
+[^fn1]: <https://learn.microsoft.com/ko-kr/dotnet/api/system.componentmodel.typeconverter?view=net-8.0>{: target='_blank' } 참조
+[^fn2]: <https://learn.microsoft.com/en-us/sql/relational-databases/xml/define-the-serialization-of-xml-data?view=sql-server-ver16>{: target='_blank' } 참조

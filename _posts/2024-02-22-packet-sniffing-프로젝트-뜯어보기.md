@@ -190,8 +190,3 @@ Bluegrams.Application.PortableSettingsProvider.ApplyProvider(Properties.Settings
  </userSettings>
 </configuration>
 ```
-
----
-
-[^fn1]: <https://learn.microsoft.com/ko-kr/dotnet/api/system.componentmodel.typeconverter?view=net-8.0>{: target='_blank' } 참조
-[^fn2]: <https://learn.microsoft.com/en-us/sql/relational-databases/xml/define-the-serialization-of-xml-data?view=sql-server-ver16>{: target='_blank' } 참조
