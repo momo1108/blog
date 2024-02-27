@@ -37,5 +37,22 @@
 			"{: target='_blank' }"
 		],
 		"description": "open link with new tab"
+	},
+	"Create Prompt": {
+		"scope": "md,markdown",
+		"prefix": "-cpr",
+		"body": [
+			"> $0",
+			"{: .prompt-$1 }"
+		],
+		"description": "create markdown prompt"
+	},
+	"File Name": {
+		"scope": "md,markdown",
+		"prefix": "-fn",
+		"body": [
+			"{: file='$0' }"
+		],
+		"description": "set codeblock filename"
 	}
 }

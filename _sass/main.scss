@@ -126,6 +126,15 @@ html {
                 div.content {
                     word-spacing: 1.5px;
                     font-size: 14px;
+                    & > p{
+                        margin-bottom: 24px;
+                    }
+                    & > div, & > ul, & > div.table-wrapper, & > div.highlighter-rouge, & > blockquote, & > dl {
+                        margin-bottom: 30px;
+                    }
+                    // *:not(.highlighter-rouge, .highlighter-rouge *){
+                    //     font-weight: 700;
+                    // }
                     
                     .table-wrapper{
                         &>table {
@@ -142,6 +151,35 @@ html {
                         }
                         td {
                             padding: 10px 16px;
+                        }
+                    }
+
+                    div.highlighter-rouge {
+                        code {
+                            .rouge-table {
+                                pre {
+                                    white-space: pre-wrap;
+                                    span {
+                                        word-break: break-word;
+                                    }
+                                }
+                            }
+                        }
+
+                        .highlight {
+                            max-height: 500px;
+                            scrollbar-color: var(--content-highlight-scrollbar-thumb-color) var(--content-highlight-scrollbar-color);
+                            scrollbar-width: thin;
+    
+                            &::-webkit-scrollbar {
+                                width: 4px;
+                                height: 8px;
+                                background-color: var(--content-highlight-scrollbar-color);
+                            }
+    
+                            &::-webkit-scrollbar-thumb {
+                                background-color: var(--content-highlight-scrollbar-thumb-color);
+                            }
                         }
                     }
 
@@ -190,22 +228,6 @@ html {
 
                     img {
                         box-shadow: var(--content-img-shadow);
-                    }
-
-                    .highlight {
-                        max-height: 750px;
-                        scrollbar-color: var(--content-highlight-scrollbar-thumb-color) var(--content-highlight-scrollbar-color);
-                        scrollbar-width: thin;
-
-                        &::-webkit-scrollbar {
-                            width: 4px;
-                            height: 8px;
-                            background-color: var(--content-highlight-scrollbar-color);
-                        }
-
-                        &::-webkit-scrollbar-thumb {
-                            background-color: var(--content-highlight-scrollbar-thumb-color);
-                        }
                     }
 
                     div {

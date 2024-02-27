@@ -20,10 +20,10 @@ Application Settings 에 프로젝트에 설정할 수 있는 세팅값들을 �
 이러한 Application Settings 는 scope 를 기준으로 두 가지로 나뉘며, 프로젝트 시스템에서 두 파일로 나뉘어 저장된다.
 
 Application-Scoped Settings
-: 웹 서비스의 URL, DB Connetion String 등의 정보를 나타내는데 사용가능. 어플리케이션과 연결되어 있기 때문에, 사용자가 런타임에 수정이 불가능하다. `app.config` 파일 🟰 Design time 에 생성되며, 첫번째 application setting 을 생성할 때 만들어진다.
+: 웹 서비스의 URL, DB Connetion String 등의 정보를 나타내는데 사용가능. 어플리케이션과 연결되어 있기 때문에, 사용자가 런타임에 수정이 불가능하다.<br>`app.config` 파일 🟰 Design time 에 생성되며, 첫번째 application setting 을 생성할 때 만들어진다.
 
 User-Scoped Settings
-: Form 의 위치나 폰트 설정 등을 유지하는데 사용가능. 사용자가 런타임에 수정이 가능하다. `user.config` 파일 🟰 runtime 에 생성되며, 어플리케이션을 실행한 사용자가 user setting 값을 변경하는 순간 만들어진다.(단, 유저가 값을 변경해도 어플리케이션에서 저장하는 메서드가 실행이 되어야 실제 디스크에 저장된다.)
+: Form 의 위치나 폰트 설정 등을 유지하는데 사용가능. 사용자가 런타임에 수정이 가능하다.<br>`user.config` 파일 🟰 runtime 에 생성되며, 어플리케이션을 실행한 사용자가 user setting 값을 변경하는 순간 만들어진다.(단, 유저가 값을 변경해도 어플리케이션에서 저장하는 메서드가 실행이 되어야 실제 디스크에 저장된다.)
 
 ---
 
