@@ -307,6 +307,8 @@ static void VersionCompatibility()
 {: file='Program.cs' }
 
 ```cs
+[DllImport("kernel32")] public static extern bool QueryFullProcessImageName([In] IntPtr hProcess, [In] int dwFlags, [Out] StringBuilder lpExeName, ref int lpdwSize);
+
 public static (Region, Version) GetLostArkVersion()
 {
     var lostArkProcesses = Process.GetProcessesByName("LOSTARK");
@@ -338,4 +340,14 @@ public static (Region, Version) GetLostArkVersion()
 ```
 {: file='Utilities/VersionCheck.cs' }
 
-Main 에서 VersionCompatibility 라는 스태틱 메서드를 실행하는데, 그 메서드 첫줄에서 `Utilities/VersionCheck.cs` 파일에 정의된 `GetLostArkVersion` 스태틱 메서드를 실행하고 있다.
+Main 에서 VersionCompatibility 라는 스태틱 메서드를 실행하는데, 그 메서드 첫줄에서 `Utilities/VersionCheck.cs` 파일에 정의된 `GetLostArkVersion` 스태틱 메서드를 실행하고 있다. 첫줄부터 심상치 않은 코드가 있다...
+
+---
+
+```cs
+[DllImport("kernel32")] public static extern bool QueryFullProcessImageName([In] IntPtr hProcess, [In] int dwFlags, [Out] StringBuilder lpExeName, ref int lpdwSize);
+```
+
+첫번째 코드를 살펴보자. `DllImportAttribute` 를 사용하고 있다. [도큐먼트](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-8.0){: target='_blank' }에 따르면 어트리뷰트가 사용된 메서드는 unmanaged DLL(Dynamic-Link Library) 로부터 실행됨을 뜻하는 것 같다.
+
+DLL 은 간단히 말하면 공유 라이브러리(shared library)인데, 관련 자세한 내용은 따로 포스트 [DLL(Dynamic-Link Library)란 무엇인가](/posts/net-dotnet-application-settings-관리/){: target='_blank' } 에 정리해두었다.
