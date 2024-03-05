@@ -135,15 +135,32 @@ internal static class Program
 
 ```cs
 public static bool IsConsole = Console.OpenStandardInput(1) != Stream.Null;
+
+[STAThread]
+static void Main(string[] args)
+{
+    ...
+}
 ```
 
 IsConsole 변수는 단순히 bool 값이고, 변수에 해당하는 값은 `Console.OpenStandardInput(1)` 로 받은 1바이트 크기의 인풋 스트림이 Null 이 아닌지의 여부이다.
 
 디버그 모드에서의 IsConsole 결과값은 True 였다.
 
+메인 메서드에는 STAThread 속성이 사용되었다. 툴팁의 설명은 아래와 같다.
+
+*어플리케이션의 COM 쓰레딩 모델이 STA(Single-Threaded Apartment) 임을 명시하는 속성*
+
+여기서 말하는 COM 이란 무엇일까? MS 도큐먼트에는 다음과 같이 정의되어있다.
+
+> COM is a platform-independent, distributed, object-oriented system for creating binary software components that can interact. COM is the foundation technology for Microsoft's OLE (compound documents) and ActiveX (Internet-enabled components) technologies.
+{: .prompt-info }
+
+자세한 내용은 해당 [포스트(COM 이란 무엇인가)](/posts/com-이란-무엇인가/){: target='_blank' } 에 정리해놓겠다.
+
 ---
 
-다음은 메인 메서드의 첫 코드이다.
+다음은 메인 메서드이다.
 
 ```cs
 Properties.Settings.Default.Providers.Clear();
@@ -351,3 +368,4 @@ Main 에서 VersionCompatibility 라는 스태틱 메서드를 실행하는데, 
 첫번째 코드를 살펴보자. `DllImportAttribute` 를 사용하고 있다. [도큐먼트](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-8.0){: target='_blank' }에 따르면 어트리뷰트가 사용된 메서드는 unmanaged DLL(Dynamic-Link Library) 로부터 실행됨을 뜻하는 것 같다.
 
 DLL 은 간단히 말하면 공유 라이브러리(shared library)인데, 관련 자세한 내용은 따로 포스트 [DLL(Dynamic-Link Library)란 무엇인가](/posts/net-dotnet-application-settings-관리/){: target='_blank' } 에 정리해두었다.
+

@@ -3,7 +3,7 @@ layout: post
 title: DLL(Dynamic-Link Library)란 무엇인가
 date: '2024-02-28 17:45:48 +0900'
 category: [Windows, DLL]
-tags: [dll,shared library,com]
+tags: [dll,shared library]
 ---
 
 # DLL(Dynamic-Link Library) 이란?
