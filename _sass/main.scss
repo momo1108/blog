@@ -126,8 +126,9 @@ html {
                 div.content {
                     word-spacing: 1.5px;
                     font-size: 14px;
-                    & > p{
+                    & > p {
                         margin-bottom: 24px;
+                        padding-left: 6px;
                     }
                     & > div, & > ul, & > div.table-wrapper, & > div.highlighter-rouge, & > blockquote, & > dl {
                         margin-bottom: 30px;
@@ -135,6 +136,35 @@ html {
                     // *:not(.highlighter-rouge, .highlighter-rouge *){
                     //     font-weight: 700;
                     // }
+
+                    h1, h2, h3, h4 {
+                        font-weight: 800;
+                    }
+
+                    h2 {
+                        padding-left: 2px;
+                    }
+
+                    h3 {
+                        padding-left: 4px;
+                    }
+
+                    img {
+                        box-shadow: var(--content-img-shadow);
+                    }
+
+                    sup > a.footnote {
+                        background-color: var(--footnote-bg);
+                        &:hover {
+                            background-color: var(--footnote-hover-bg);
+                        }
+                    }
+
+                    div {
+                        a.tag {
+                            background: var(--card-bg);
+                        }
+                    }
                     
                     .table-wrapper{
                         &>table {
@@ -183,23 +213,6 @@ html {
                         }
                     }
 
-
-                    &>p {
-                        padding-left: 6px;
-                    }
-
-                    h1, h2, h3, h4 {
-                        font-weight: 800;
-                    }
-
-                    h2 {
-                        padding-left: 2px;
-                    }
-
-                    h3 {
-                        padding-left: 4px;
-                    }
-
                     hr {
                         position: relative;
                         margin: 70px 0 !important;
@@ -223,16 +236,6 @@ html {
                             background-repeat: no-repeat;
                             transform: translate(-50%, -50%);
                             border: 2px solid var(--content-hr-border-color);
-                        }
-                    }
-
-                    img {
-                        box-shadow: var(--content-img-shadow);
-                    }
-
-                    div {
-                        a.tag {
-                            background: var(--card-bg);
                         }
                     }
 
