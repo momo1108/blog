@@ -125,8 +125,10 @@ html {
                 }
 
                 div.content {
+                    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", Tahoma, 나눔고딕, "Nanum Gothic";
                     word-spacing: 1.5px;
                     font-size: 14px;
+
                     & > p {
                         margin-bottom: 24px;
                         padding-left: 6px;
@@ -140,6 +142,7 @@ html {
 
                     h1, h2, h3, h4 {
                         font-weight: 800;
+                        font-family: var($font-family-heading);
                     }
 
                     h2 {
