@@ -349,4 +349,6 @@ MainPage 와 MainViewModel 을 등록했다.
 - .NET MAUI 도큐먼트 : <https://learn.microsoft.com/ko-kr/dotnet/maui/?view=net-maui-8.0>{:target="_blank"}
 - 좋은 .NET MAUI 라이브러리, 리소스가 정리된 깃헙(awesome-dotnet-maui) : <https://github.com/jsuarezruiz/awesome-dotnet-maui>{:target="_blank"}
 
+---
+
 [^1]: UI와 UI가 아닌 코드를 분리하기 위한 아키텍처 디자인 패턴이다. https://learn.microsoft.com/ko-kr/windows/uwp/data-binding/data-binding-and-mvvm

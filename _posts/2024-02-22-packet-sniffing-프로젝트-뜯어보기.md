@@ -158,6 +158,10 @@ IsConsole 변수는 단순히 bool 값이고, 변수에 해당하는 값은 `Con
 
 자세한 내용은 해당 [포스트(COM 이란 무엇인가)](/posts/com-이란-무엇인가/){: target='_blank' } 에 정리해놓겠다.
 
+중요한 것은 쓰레딩 모델이 STA 라는 것인데, 이는 
+
+자세한 내용은 또 따로 [포스트(COM 의 Processes, Threads, Apartments)](/posts/com-의-processes-threads-apartments/){: target='_blank' }에 정리해놓겠다.
+
 ---
 
 다음은 메인 메서드이다.

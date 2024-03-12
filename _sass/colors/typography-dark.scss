@@ -9,6 +9,7 @@
     // Image2 by <a href="https://www.freepik.com/free-photo/beeautiful-landscape-with-mountain-starry-sky_44365194.htm#page=5&query=night%20sky&position=20&from_view=search&track=ais&uuid=c831ad00-e25a-4656-8ec9-0fad04715914">Freepik</a>
     // Image3 by <a href="https://www.freepik.com/free-vector/gradient-black-background-with-wavy-lines_19852122.htm#page=2&query=dark%20background&position=4&from_view=search&track=ais&uuid=c0ba3ece-4bfd-4abc-9d54-3cfa7eed3f50">Freepik</a>
     --main-bg: url("/assets/img/background/dark_container3.jpg");
+    --main-bg-color: linear-gradient(165deg, #000, #050505 40%, #23242b 45%, #050505 55%, #23242b 65%, #050505 75%, #23242b 85%);
     --mask-bg: rgb(68, 69, 70);
     --main-border-color: rgb(88, 90, 90);
   
@@ -43,6 +44,7 @@
     --site-subtitle-color: #d1d1d1;
     // <a href="https://www.freepik.com/free-photo/beautiful-sky-full-stars-trona-ca_13381243.htm#query=starry%20night&position=14&from_view=search&track=ais">Image by wirestock</a> on Freepik
     --sidebar-bg: url("/assets/img/background/dark_sidebar.png");
+    --sidebar-bg-color: linear-gradient(180deg, #090f1a, #2d4353 50%, #67767f 70%, #000 90%);
     --sidebar-border-color: #292929;
     --sidebar-muted-color: #dadada;
     --sidebar-active-color: #2691f6;
@@ -84,7 +86,7 @@
     --prompt-text-color: rgb(216, 212, 212, 0.75);
     --prompt-tip-bg: rgb(22, 60, 36, 0.64);
     --prompt-tip-icon-color: rgb(15, 164, 15, 0.81);
-    --prompt-info-bg: rgb(7, 59, 104, 0.8);
+    --prompt-info-bg: rgba(7, 59, 104, 0.66);
     --prompt-info-icon-color: #0075d1;
     --prompt-warning-bg: rgb(90, 69, 3, 0.88);
     --prompt-warning-icon-color: rgb(255, 165, 0, 0.8);

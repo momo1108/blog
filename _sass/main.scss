@@ -28,6 +28,7 @@
 
 html {
     #sidebar {
+        background: var(--sidebar-bg), var(--sidebar-bg-color);
         background-size: cover;
         background-position: center;
         
@@ -59,7 +60,7 @@ html {
     }
 
     div#main-wrapper {
-        background-image: var(--main-bg);
+        background: var(--main-bg), var(--main-bg-color);
         background-attachment: fixed;
         background-size: cover;
         background-repeat: no-repeat;
