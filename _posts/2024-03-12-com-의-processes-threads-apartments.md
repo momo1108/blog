@@ -20,11 +20,11 @@ thread scheduler 는 언제, 얼마나 thread 를 실행할지 결정하는데, 
 
 multi thread 를 사용하는 application 이 주의할 두가지 threading problem 이 있다.
 
-deadlock
-: 각각의 thread 가 다른 thread 의 동작을 기다리느라 대기하는 상태. *COM call control* 이 두 object 사이의 call 에서 발생하는 deadlock 을 막아준다.
+#### deadlock
+각각의 thread 가 다른 thread 의 동작을 기다리느라 대기하는 상태. *COM call control* 이 두 object 사이의 call 에서 발생하는 deadlock 을 막아준다.
 
-race condition
-: 한 thread 가 값을 참조하는 다른 thread  보다 먼저 완료됐을 때, 해당 thread 는 유효한 값을 제공하지 못하는 시점이기 때문에 제대로 초기화되지 않은 값을 사용하게 된다. COM 에서는 out-of-process servers[^fn1] 안의 race condition 을 피하기 위해 특별히 디자인된 함수를 지원한다. 구현을 위한 [도큐먼트(Out-of-Process Server Implementation Helpers)](https://learn.microsoft.com/en-us/windows/win32/com/out-of-process-server-implementation-helpers){: target='_blank' } 도 있다.
+#### race condition
+thread A 내부의 값을 참조하는 thread B 가 있을 때, thread A 가 먼저 완료되면 thread B 는 유효한 값을 제공하지 못하는 시점이기 때문에 제대로 초기화되지 않은 값을 사용하게 된다. COM 에서는 out-of-process servers[^fn1] 안의 race condition 을 피하기 위해 특별히 디자인된 함수를 지원한다. 구현을 위한 [도큐먼트(Out-of-Process Server Implementation Helpers)](https://learn.microsoft.com/en-us/windows/win32/com/out-of-process-server-implementation-helpers){: target='_blank' } 도 있다.
 
 ---
 
@@ -41,16 +41,16 @@ COM 의 초기에는 single-thread-per-process(process 당 하나의 thread) 모
 
 이러한 apartment 에는 2가지 종류가 있는데, *STA(single-threaded apartments)* 와 *MTA(multi-threaded apartments)* 가 있다.
 
-STA(single-threaded apartments)
-: 하나의 thread 로 이루어져있다. 따라서 STA 에 속한 모든 COM object 의 method 는 그 하나의 thread 만이 호출할 수 있다. STA 내부의 모든 COM object 의 method 호출은 STA thread 의 windows message queue 를 통해 동기적으로 처리된다. 하나의 실행 thread 를 가진 process 는 이 STA 의 한 케이스이다.
+#### STA(single-threaded apartments)
+하나의 thread 로 이루어져있다. 따라서 STA 에 속한 모든 COM object 의 method 는 그 하나의 thread 만이 호출할 수 있다. STA 내부의 모든 COM object 의 method 호출은 STA thread 의 windows message queue 를 통해 동기적으로 처리된다. 하나의 실행 thread 를 가진 process 는 이 STA 의 한 케이스이다.
 
 > 마지막 문장이 이해가 잘 안되네?
 >
 > 여기서 말하는 *하나의 실행 thread 를 가진 process(process with a single thread of execution)* 는 **process** 의 개념으로 단 하나의 thread 만 가지고 있기 때문에 자연스럽게 STA 가 적용되는 특정 케이스이다. STA 는 **apartment** 의 개념으로 COM의 특정 스레딩 모델 중 하나로, 모든 COM object 가 특정 thread 에서만 호출을 받을 수 있는 apartment 를 의미한다.
 {: .prompt-info }
 
-MTA(multi-threaded apartments)
-: 하나 이상의 thread 로 이루어져있다. 따라서 MTA 에 속한 모든 COM object 들의 method 는 MTA 에 속한 모든 thread 에서 직접적으로 호출할 수 있다. MTA 에 속한 thread 들은 *free-threading* 이라는 모델을 사용한다. free-threading 모델은 MTA 의 다중 thread 환경에서 한 COM object 에 여러 thread 가 동시에 method 를 호출할 때, COM object 내부적으로 안전한 동기화 메커니즘을 구현해 데이터의 안전성을 보장해준다.
+#### MTA(multi-threaded apartments)
+하나 이상의 thread 로 이루어져있다. 따라서 MTA 에 속한 모든 COM object 들의 method 는 MTA 에 속한 모든 thread 에서 직접적으로 호출할 수 있다. MTA 에 속한 thread 들은 *free-threading* 이라는 모델을 사용한다. free-threading 모델은 MTA 의 다중 thread 환경에서 한 COM object 에 여러 thread 가 동시에 method 를 호출할 때, COM object 내부적으로 안전한 동기화 메커니즘을 구현해 데이터의 안전성을 보장해준다.
 
 > 한 process 의 STA 와 MTA 사이의 통신에 대한 설명을 보고싶으면, 다음 [도큐먼트(Single-Threaded and Multithreaded Communication)](https://learn.microsoft.com/en-us/windows/win32/com/single-threaded-and-multithreaded-communication){: target='_blank' } 를 참조하자.
 {: .prompt-tip }
