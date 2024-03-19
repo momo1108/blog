@@ -77,6 +77,18 @@ unset env
 
 ---
 
+## 추가) Ubuntu 에서 ssh-agent 구동
+ubuntu 서버 환경에서도 ssh-agent 가 실행중이 아니라고 서버를 껐다킬때마다 뜬다.
+
+먼저 ssh-agent 프로세스를 실행 후 퍼블릭키를 등록해야한다.
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/퍼블릭키
+```
+
+---
+
 ## Github 계정에 등록
 github repo가 아닌 계정 설정에 들어가서 key를 등록하자.
 
