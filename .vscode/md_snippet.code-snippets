@@ -54,5 +54,21 @@
 			"{: file='$0' }"
 		],
 		"description": "set codeblock filename"
+	},
+	"Link With New Tab": {
+		"scope": "md,markdown",
+		"prefix": "-lwnt",
+		"body": [
+			"[$1]($2){: target='_blank' }"
+		],
+		"description": "link with new tab"
+	},
+	"Baekjun Link With New Tab": {
+		"scope": "md,markdown",
+		"prefix": "-blwnt",
+		"body": [
+			"[BOJ $1](https://www.acmicpc.net/problem/$1){: target='_blank' }"
+		],
+		"description": "baekjun link with new tab"
 	}
 }
