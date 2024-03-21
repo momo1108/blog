@@ -67,7 +67,7 @@
 		"scope": "md,markdown",
 		"prefix": "-blwnt",
 		"body": [
-			"[BOJ $1](https://www.acmicpc.net/problem/$1){: target='_blank' }"
+			"[BOJ $1 - $0](https://www.acmicpc.net/problem/$1){: target='_blank' }"
 		],
 		"description": "baekjun link with new tab"
 	}
