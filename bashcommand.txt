@@ -1,0 +1,1 @@
+alias blog="bundle exec jekyll s"
