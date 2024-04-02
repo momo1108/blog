@@ -8,7 +8,7 @@
     /* Framework color */
     // <a href="https://www.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_17729660.htm#query=blue%20background&position=2&from_view=search&track=ais&uuid=4c51aa03-d699-4304-a83c-c12816d881c6">Image by user3802032</a> on Freepik
     // Image by <a href="https://www.freepik.com/free-vector/watercolor-pastel-color-pattern-design_26559530.htm#query=light%20green%20background&position=21&from_view=search&track=ais&uuid=32a56f38-aa29-4cf8-b5f1-906249988df4">Freepik</a>
-    --main-bg: url("/assets/img/background/light_container5.jpg");
+    --main-bg: url("/assets/img/background/light_container6.jpg");
     --main-bg-color: linear-gradient(165deg, #e4f9f2, #ceedd3 65%, #bce0a9 85%);
     --mask-bg: #c1c3c5;
     --main-border-color: rgb(137, 212, 130);
@@ -125,6 +125,7 @@
 
     /* Custom */
     --header-hr-border-color: #ccc;
+    --header-border-bottom: 1px solid #dddddd;
     --content-hr-border-color: #bbb;
     --content-hr-image-bg-color: #e4ffc8;
     --content-highlight-scrollbar-color: #eceeef;

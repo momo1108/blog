@@ -152,7 +152,7 @@ IWebHostEnvironment 는 애플리케이션이 실행되고있는 웹 호스팅 �
 
 이를 위해서는 먼저 페이지의 코드를 살펴보자. 대충 구성은 다음과 비슷하다.
 
-```cshtml
+```xml
 @page
 @model IndexModel
 @{
@@ -164,6 +164,7 @@ IWebHostEnvironment 는 애플리케이션이 실행되고있는 웹 호스팅 �
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 ```
+{: file='Index.cshtml' }
 
 파일의 확장자가 cshtml 이고 코드를 보면 html과 csharp 코드가 같이 사용되고 있다.
 
@@ -230,7 +231,7 @@ namespace TestProject.WebSite.Pages
 
 이를 통해 인덱스 페이지에 출력할 코드를 작성해보자.
 
-```cshtml
+```xml
 @page
 @using TestProject.WebSite.Components
 @model IndexModel
@@ -264,6 +265,7 @@ namespace TestProject.WebSite.Pages
     }
 </div>
 ```
+{: file='Index.cshtml' }
 
 템플릿 내부적으로 bootstrap이 사용되고 있다. Bootstrap의 CSS class들을 이용해 3줄로 구성된 상품 목록 코드를 작성하였다.
 
@@ -398,7 +400,7 @@ namespace TestProject.WebSite.Controllers
 
 아래의 코드를 살펴보자.
 
-```razor
+```xml
 @page
 @using TestProject.WebSite.Components
 @model IndexModel
@@ -415,6 +417,7 @@ namespace TestProject.WebSite.Controllers
 
 <script src="_framework/blazor.server.js"></script>
 ```
+{: file='Index.cshtml' }
 
 컴포넌트를 사용하기 위해 `@using` 디렉티브를 사용했다. 문제는 맨 밑의 컴포넌트 렌더링 코드이다.
 
@@ -424,7 +427,7 @@ namespace TestProject.WebSite.Controllers
 
 도큐먼트의 코드는 조금 더 간단하긴 했다.
 
-```cshtml
+```xml
 @page
 @using TestProject.WebSite.Components
 @model IndexModel
@@ -441,6 +444,7 @@ namespace TestProject.WebSite.Controllers
 
 <script src="_framework/blazor.server.js"></script>
 ```
+{: file='Index.cshtml' }
 
 일단 컴포넌트를 렌더링하는 코드가 훨씬 가독성이 좋아졌다.
 
@@ -448,7 +452,7 @@ namespace TestProject.WebSite.Controllers
 
 `@for` 디렉티브 사용 시 주의사항
 
-```cshtml
+```xml
 @for(int star = 1; star < 6; star++)
 {
     if (star <= selectedRating)
@@ -460,6 +464,7 @@ namespace TestProject.WebSite.Controllers
     }
 }
 ```
+{: file='Components/ProductList.razor' }
 
 위 코드는 별점 시스템을 위한 코드블럭이었다. 마우스를 올리면 내가 선택한 별점이 세터 메서드를 통해 변경되고, 클릭하면 해당 별점을 업데이트하는 형태이다.
 
@@ -475,7 +480,7 @@ Razor Page가 렌더링 되는 과정이 뭔지는 정확히 알아봐야 겠지
 
 아래의 코드를 살펴보자.
 
-```cshtml
+```xml
 @for(int star = 1; star < 6; star++)
 {
     var currentStar = star;
@@ -488,6 +493,7 @@ Razor Page가 렌더링 되는 과정이 뭔지는 정확히 알아봐야 겠지
     }
 }
 ```
+{: file='Components/ProductList.razor' }
 
 달라진 것은 딱 하나 star 의 값을 currentStar 라는 변수에 저장한 것이다. 이 변수는 지역변수이고, for loop가 진행됨에 따라 각각 새로 초기화 되는 변수이기 때문에 원하는 대로 동작을 이끌어낼 수 있었다.
 
