@@ -70,5 +70,13 @@
 			"[BOJ $1 - $2](https://www.acmicpc.net/problem/$1){: target='_blank' }$0"
 		],
 		"description": "baekjun link with new tab"
+	},
+	"Hide Underline": {
+		"scope": "md,markdown",
+		"prefix": "-hu",
+		"body": [
+			"<p class='hideUnderline'></p>"
+		],
+		"description": "insert hideUnderline p tag"
 	}
 }
