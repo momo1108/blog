@@ -65,7 +65,7 @@
 	},
 	"Baekjun Link With New Tab": {
 		"scope": "md,markdown",
-		"prefix": "-blwnt",
+		"prefix": ["-blwnt", "-ㅠ"],
 		"body": [
 			"[BOJ $1 - $2](https://www.acmicpc.net/problem/$1){: target='_blank' }$0"
 		],

@@ -142,6 +142,12 @@ html {
                     & > div, & > ul, & > ol, & > dl, & > div.table-wrapper, & > div.highlighter-rouge, & > blockquote {
                         margin-bottom: 30px;
                     }
+                    & > dl {
+                        padding-left: 20px;
+                    }
+                    & > ol {
+                        margin-left: 10px;
+                    }
                     // *:not(.highlighter-rouge, .highlighter-rouge *){
                     //     font-weight: 700;
                     // }
@@ -178,25 +184,28 @@ html {
                     }
 
                     h2 {
+                        margin-top: 60px;
                         margin-bottom: 30px;
                         padding-left: 2px;
                         font-size: 28px;
                     }
 
                     h3 {
+                        margin-top: 60px;
                         margin-bottom: 30px;
                         padding-left: 4px;
                         font-size: 24px;
                     }
 
                     h4 {
+                        margin-top: 60px;
                         margin-bottom: 30px;
                         padding-left: 6px;
                         font-size: 21px;
                     }
 
                     h5 {
-                        margin-top: 30px;
+                        margin-top: 45px;
                         margin-bottom: 20px;
                         padding-left: 10px;
                     }
