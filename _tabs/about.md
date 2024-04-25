@@ -13,7 +13,9 @@ order: 4
 
 # About Me
 ## 사이드 프로젝트
-### 로아플(<https://loaple.site>)
+### ~~로아플(<https://loaple.site>)~~
+> 서버 비용 문제로 임시 폐쇄 상태입니다. ㅠㅠ
+{: .prompt-warning }
 ![로아플메인페이지](/assets/img/captures/8.png){: width="650px" }
 _MMORPG 게임 로스트아크의 플레이를 도와주는 웹 도구 사이트입니다._
 
