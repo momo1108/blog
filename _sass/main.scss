@@ -155,10 +155,9 @@ html {
                     & > mjx-container {
                         margin-top: 30px;
                         margin-bottom: 30px;
+                        padding-left: 10px;
 
-                        mjx-math {
-                            font-weight: bold !important;
-                        }
+                        text-align: left !important;
                     }
 
                     strong mjx-math {
