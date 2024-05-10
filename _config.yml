@@ -16,7 +16,7 @@ timezone: Asia/Seoul
 
 title: Hyechan's Blog # the main title
 
-tagline: 초간단 개발 블로그 # it will display as the sub-title
+tagline: 초간단 개인 블로그 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   프론트 꿈나무의 개발 블로그

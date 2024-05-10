@@ -38,6 +38,14 @@
 		],
 		"description": "set image width and align"
 	},
+	"Insert Image Caption aligned to the left": {
+		"scope": "md,markdown",
+		"prefix": "-cl",
+		"body": [
+			"<em style='width: $1px;'>$0</em>"
+		],
+		"description": "set image width and align"
+	},
 	"Open Link With New Tab": {
 		"scope": "md,markdown",
 		"prefix": "-nt",

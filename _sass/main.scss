@@ -182,30 +182,42 @@ html {
                         font-size: 32px;
                     }
 
-                    h2:not(h1 + h2) {
-                        margin-top: 90px;
-                        margin-bottom: 35px;
+                    h2 {
+                        margin-top: 0px;
+                        &:not(h1 + h2){
+                            margin-top: 90px;
+                            margin-bottom: 35px;
+                        }
                         padding-left: 2px;
                         font-size: 28px;
                     }
 
-                    h3:not(h2 + h3) {
-                        margin-top: 90px;
-                        margin-bottom: 35px;
+                    h3 {
+                        margin-top: 0px;
+                        &:not(h2 + h3){
+                            margin-top: 90px;
+                            margin-bottom: 35px;
+                        }
                         padding-left: 4px;
                         font-size: 24px;
                     }
 
-                    h4:not(h3 + h4) {
-                        margin-top: 80px;
-                        margin-bottom: 35px;
+                    h4 {
+                        margin-top: 0px;
+                        &:not(h3 + h4){
+                            margin-top: 80px;
+                            margin-bottom: 35px;
+                        }
                         padding-left: 6px;
-                        font-size: 21px;
+                        font-size: 18px;
                     }
 
-                    h5:not(h4 + h5) {
-                        margin-top: 70px;
-                        margin-bottom: 30px;
+                    h5 {
+                        margin-top: 0px;
+                        &:not(h4 + h5){
+                            margin-top: 70px;
+                            margin-bottom: 30px;
+                        }
                         padding-left: 10px;
                     }
 
