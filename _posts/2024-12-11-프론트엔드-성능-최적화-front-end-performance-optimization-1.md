@@ -75,14 +75,75 @@ Monitoring bfcache blocking reasons
 
 다양한 컨셉들이 있지만, 이중에서도 웹 어플리케이션의 성능에 가장 연관이 높아보이는 Resource Timing 과 Navigation Timing 에 대해서 좀 더 알아보려고 한다.
 
+### Resource Timing
 ![timestamp-diagram](/assets/img/captures/1_timestamp-diagram.png){: width='700' .normal }
 
-위 그림은 w3c 에서 제공하는 Processing Model 로 Resource Timing 과 Navigation Timing 을 포함한다. 각각 [PerformanceNavigationTiming Interface](https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming){: target='_blank' } 에서 정의하고 있는 타이밍 속성들을 나타내고, 소괄호로 묶여있는 것은 다른 origin 문서에서의 네비게이션에서는 동작하지 않을 수 있다는 뜻이다.
+위 그림은 w3c 에서 제공하는 Processing Model 로 **Resource Timing** 과 **Navigation Timing** 을 포함한다. 각각 [PerformanceNavigationTiming Interface](https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming){: target='_blank' } 에서 정의하고 있는 타이밍 속성들을 나타내고, 소괄호로 묶여있는 것은 다른 origin 문서에서의 네비게이션에서는 동작하지 않을 수 있다는 뜻이다.
+
+먼저 노란색 위주의 [Resource Timing](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Resource_timing){: target='_blank' } 을 살펴보자.
+
+#### 개념
+Resource Timing 은 **어플리케이션의 리소스를 불러올 때 네트워크의 시간 데이터를 받아서 분석할 수 있는 API** 이다. 이를 활용해 페이지 로드의 일부 혹은 자바스크립트(ex. fetch api 등)로 불러오는 특정 리소스(이미지나 스크립트 파일)를 불러오는데 걸린 시간을 구할 수 있다.
+
+문서 내의 모든 리소스들은 [PerformanceResourceTiming](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming){: target='_blank' } (*[PerformanceEntry](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry){: target='_blank' } 인터페이스를 확장한 인터페이스*)의 entry 로서 표현된다.(`{ ..., entryType:"resource" }`)
+
+리소스 각각의 PerformanceResourceTiming entry 들을 위해 리소스 로딩 타임라인은 전부 high-resolution timestamps 를 통해 리다이렉트 시작/끝, dns lookup 시작/끝, request/response 시작/끝 등의 시간들이 기록된다. 이런 시간 정보 외에도 리소스의 사이즈나 fetch 를 일으킨 리소스의 타입 등 리소스 관련 정보도 properties 로 제공된다.
+
+#### API
+그럼 이제 Resource Timing 에서 제공하는 **타임스탬프 api** 들을 흐름에 맞게 살펴보자.
+
+1. `startTime`: 리소스 로딩 프로세스가 시작되기 직전
+2. `redirectStart`: redirect 를 일으키는 fetch 시점
+3. `redirectEnd`: 최근 redirect 에 대한 응답의 last byte 까지 받은 직후
+4. `workerStart`: Service Worker 쓰레드가 시작되기 직전
+5. `fetchStart`: 브라우저가 리소스 fetch 를 시작하기 직전
+6. `domainLookupStart`: 브라우저가 리소스의 domain name lookup 을 시작하기 직전
+7. `domainLookupEnd`: 브라우저가 리소스의 domain name lookup 을 완료한 직후
+8. `connectStart`: 유저 에이전트가 서버에서 리소스를 받아오기 위한 연결 설정을 시작하기 직전
+9. `secureConnectionStart`: 리소스가 secure connection 을 사용하는 경우,브라우저가 현재 연결 보안을 위한 handshake 프로세스를 시작하는 시점(ex. https 연결의 tls handshake)
+10. `connectEnd`: 브라우저가 서버로부터 리소스를 받아오기 위한 연결 설정을 완료한 직후
+11. `requestStart`: 브라우저가 서버/캐시/로컬 리소스를 요청하기 직전
+12. `responseStart`: 브라우저가 서버/캐시/로컬 리소스 응답의 first byte 를 받은 직후
+13. `responseEnd`: 브라우저가 리소스 응답의 last byte 를 받은 직후 or transport connection 이 끝나기 직전 (둘 중 더 빠른 시점)
+
+종합해보면 네트워크 요청을 통해 리소스를 가져오는 과정은 다음과 같다.
+
+`redirect 가 시작` - `Service Worker 가 시작` - `리소스를 fetch 하기 시작` - `리소스의 domain name lookup` - `연결 설정` - `리소스를 요청` - `응답 완료 and 연결 종료`
+
+또한 위의 타임스탬프들을 조합해 TCP handshake, DNS lookup, 리다이렉트 시간 등 다양한 시간 지표([Typical Resource Timing Metrics](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Resource_timing#typical_resource_timing_metrics){: target='_blank' })들을 구해낼 수 있다.
+
+### Navigation Timing
+다음은 Navigation Timing 이다.
+
+#### 개념
+Navigation Timing 은 **한 페이지에서 다른 페이지로의 navigating** 에 관련된 지표들과 관련되어있다. 예를들어, **document 를 load/unload** 하는데 걸린 시간을 계산하거나 혹은 **DOM 생성이 완료**되고 **DOM 과 상호작용이 가능**해해지는데 걸린 시간을 기록한다.
+
+오직 현재 document 만 포함되기 때문에 보통 하나의 [PerformanceNavigationTiming](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming){: target='_blank' } 객체만을 사용한다. 이 객체는 [PerformanceEntry](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry){: target='_blank' } 인터페이스의 확장(`{ ..., entryType: "navigation" }`)이고, [PerformanceResourceTiming](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming){: target='_blank' } 인터페이스를 상속한 인터페이스다. 따라서 document 를 fetching 하는 과정의 타임스탬프들 또한 모두 사용 가능하다.
+
+![Navigation Timing](/assets/img/captures/2_navigation_timing.png){: .normal }
+
+#### API
+이제 Navigation Timing 에서 제공하는 **타임스탬프 api** 들을 흐름에 맞게 살펴보자.
+
+1. startTime: 항상 0 으로 설정됨.
+2. unloadEventStart: 이전 document 가 있는경우, 현재 document 의 unload 이벤트 핸들러가 시작되기 직전
+3. unloadEventEnd: 이전 document 가 있는경우, 현재 document 의 unload 이벤트 핸들러가 실행 완료된 직후
+4. domInteractive: DOM 생성이 끝나고 javascript 로 상호작용이 가능해진 시점
+5. domContentLoadedEventStart: 현재 document 의 DOMContentLoaded 이벤트 핸들러가 시작되기 직전
+6. domContentLoadedEventEnd: 현재 document 의 DOMContentLoaded 이벤트 핸들러가 실행 완료된 직후
+7. domComplete: document 와 모든 sub-resource 들의 로딩이 완료된 시점
+8. loadEventStart: 현재 document 의 load 이벤트 핸들러가 시작되기 직전
+9. loadEventEnd: 현재 document 의 load 이벤트 핸들러가 실행 완료된 직후
 
 
-
+---
 
 ## 성능 측정 도구
 성능 최적화에는 다양한 방식들이 있지만, 이러한 방식들이 얼마나 효과적인지를 알기 위해서는 최적화 적용 전/후 시점의 성능을 각각 측정할 필요가 있다.
 
 이러한 관점에서 성능을 측정하기 위한 다양한 지표들과 측정 도구가 필요하다. 대부분의 개발자들이 사용하는 도구들과 지표들이 있
+
+---
+
+서비스 워커
+유저 에이전트
