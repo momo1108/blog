@@ -135,6 +135,95 @@ Navigation Timing 은 **한 페이지에서 다른 페이지로의 navigating** 
 8. loadEventStart: 현재 document 의 load 이벤트 핸들러가 시작되기 직전
 9. loadEventEnd: 현재 document 의 load 이벤트 핸들러가 실행 완료된 직후
 
+종합해보면 리소스를 불러온 후, 페이지가 렌더링되는 과정은 다음과 같다.
+
+(이전 document 가 있는 경우)`window.onbeforeunload, window.onunload 이벤트 핸들러` - `DOMContentLoaded 이벤트 핸들러` - `window.onload 이벤트 핸들러`
+
+이 이벤트들은 HTML 문서의 라이프 사이클에 관여하는 핵심 이벤트들이다.
+
+각각의 이벤트에 대한 설명을 [모던 JavaScript 튜토리얼](https://ko.javascript.info/onload-ondomcontentloaded){: target='_blank' } 에서 인용해 아래처럼 정리해봤다.
+
+#### beforeunload
+사용자가 사이트를 떠나려 할 때, 변경되지 않은 사항들을 저장했는지 확인시켜줄 때 사용한다.
+
+#### unload
+사용자가 진짜 떠나기 전에 사용자 분석 정보를 담은 통계자료를 전송하고자 할 때 사용한다.
+
+#### DOMContentLoaded
+브라우저가 HTML을 전부 읽고 DOM 트리를 완성하는 즉시 발생한다. 이미지 파일(\<img\>)이나 스타일시트 등의 기타 자원은 기다리지 않는다. DOM이 준비된 것을 확인한 후 원하는 DOM 노드를 찾아 핸들러를 등록해 인터페이스를 초기화할 때 사용할 수 있다. 이 이벤트는 document 객체에서 발생해야 하므로 **document.addEventListener** 메서드를 사용해서 설정해야 한다.
+
+```html
+<script>
+    function ready() {
+        alert('DOM이 준비되었습니다!');
+        // 이미지가 로드되지 않은 상태이기 때문에 사이즈는 0x0으로 출력된다.
+        alert(`이미지 사이즈: ${img.offsetWidth}x${img.offsetHeight}`);
+    }
+    document.addEventListener("DOMContentLoaded", ready);
+</script>
+<img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+```
+
+문서가 로드된 후 실행되므로, 핸들러 내부에서는 핸들러 코드 아래쪽에 있는 모든 요소(img, p, div, ...)에 id를 통해 접근할 수 있지만 이미지나 외부 스타일시트는 적용되지 않은 상태라서 img 의 크기는 0으로, div 의 크기는 기본 설정된 크기로 출력된다.
+
+브라우저가 HTML 문서를 처리할 때, \<script> 태그의 내용은 DOM 조작 관련 로직이 있을 수 있어서 DOM 트리의 구성을 멈추고 \<script> 태그의 내용이 먼저 실행된다. 아래의 코드를 살펴보자.
+
+```html
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    alert("DOM이 준비되었습니다!");
+  });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+
+<script>
+  alert("라이브러리 로딩이 끝나고 인라인 스크립트가 실행되었습니다.");
+</script>
+```
+
+이 코드에서 가장 먼저 DOMContentLoaded 이벤트 핸들러를 등록하지만, 아래 스크립트들이 모두 실행될 때 까지 DOM 트리의 구성이 멈추기 때문에, 아래의 스크립트들이 모두 실행된 이후에 이벤트 핸들러가 실행된다.
+
+##### 예외
+마지막으로 위 규칙들에 대한 예외가 몇가지 존재한다.
+
+1. `async` 속성을 사용한 스크립트는 DOMContentLoaded 를 블락하지 않는다.
+
+    [**async, defer 속성이란?**](https://ko.javascript.info/script-async-defer){: target='_blank' }
+    > defer 와 async 모두 스크립트가 백그라운드에서 실행된다는 특징은 동일하다. 
+    > - defer 는 페이지 생성을 막지 않고 DOM 이 준비된 후 실행되지만 `DOMContentLoaded` 이벤트 발생 전에는 실행된다.(defer 는 src 속성이 존재하는 외부 스크립트에서만 동작한다. src 가 없는 경우 무시된다.)
+    > ```html
+        <p>...스크립트 앞 콘텐츠...</p>
+        <script>
+        document.addEventListener('DOMContentLoaded', () => alert("`defer` 스크립트가 실행된 후, DOM이 준비되었습니다!")); // 이벤트 핸들러는 먼저 등록되지만 defer 스크립트가 완료된 후에 실행이 된다.
+        </script>
+        <script defer src="https://javascript.info/article/script-async-defer/long.js?speed=1"></script>
+        <p>...스크립트 뒤 콘텐츠...</p> <!-- 직전의 외부 스크립트의 실행 완료를 기다리지 않고 바로 페이지에 출력된다. -->
+      ```
+    > - async 는 페이지와는 완전 독립적으로 동작한다. async 스크립트와 `DOMContentLoaded` 이벤트, 또 async 스크립트끼리는 서로의 실행을 기다리지 않습니다.
+    > ```html
+        <p>...스크립트 앞 콘텐츠...</p>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => alert("DOM이 준비 되었습니다!"));
+          // 아래의 async 스크립트 실행 전 핸들러가 실행되고, 컨텐츠도 모두 보인다.
+        </script>
+        <script async src="https://javascript.info/article/script-async-defer/long.js"></script>
+        <script async src="https://javascript.info/article/script-async-defer/small.js"></script>
+        <p>...스크립트 뒤 콘텐츠...</p>
+      ```
+    {: .prompt-info }
+2. `document.createElement('script')` 메서드로 동적 생성된 스크립트는 DOMContentLoaded 를 블락하지 않습니다.
+3. 간혹 스타일시트의 영향을 받는 요소의 속성을 사용해야하는 경우를 위해 외부 스타일시트 중 \<script> 바로 이전에 스타일 시트를 불러오면 스크립트의 실행이 스타일시트를 불러올 때 까지 블락됩니다.
+  ```html
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <script>
+      // 이 스크립트는 위 스타일시트가 로드될 때까지 실행되지 않습니다.
+      alert(getComputedStyle(document.body).marginTop);
+    </script>
+  ```
+
+#### load
+HTML로 DOM 트리를 만드는 게 완성되었을 뿐만 아니라 이미지, 스타일시트 같은 외부 자원도 모두 불러와서 적용이 끝났을 때 발생한다. 따라서 이미지 사이즈를 확인할 때 등 화면에 뿌려지는 요소의 실제 크기를 확인할 수 있다.
 
 ---
 
