@@ -143,14 +143,53 @@ Navigation Timing 은 **한 페이지에서 다른 페이지로의 navigating** 
 
 각각의 이벤트에 대한 설명을 [모던 JavaScript 튜토리얼](https://ko.javascript.info/onload-ondomcontentloaded){: target='_blank' } 에서 인용해 아래처럼 정리해봤다.
 
-#### beforeunload
-사용자가 사이트를 떠나려 할 때, 변경되지 않은 사항들을 저장했는지 확인시켜줄 때 사용한다.
+#### 1. beforeunload
+window 객체의 이벤트로, 사용자가 페이지를 닫으려고 하거나 다른 페이지로 이동하려 할 때, `beforeunload` 핸들러를 통해 추가 확인을 요청할 수 있다.
 
-#### unload
-사용자가 진짜 떠나기 전에 사용자 분석 정보를 담은 통계자료를 전송하고자 할 때 사용한다.
+핸들러에서 false 값을 return 하면 아래와 같은 알러트창이 뜬다.
 
-#### DOMContentLoaded
-브라우저가 HTML을 전부 읽고 DOM 트리를 완성하는 즉시 발생한다. 이미지 파일(\<img\>)이나 스타일시트 등의 기타 자원은 기다리지 않는다. DOM이 준비된 것을 확인한 후 원하는 DOM 노드를 찾아 핸들러를 등록해 인터페이스를 초기화할 때 사용할 수 있다. 이 이벤트는 document 객체에서 발생해야 하므로 **document.addEventListener** 메서드를 사용해서 설정해야 한다.
+![alert](/assets/img/captures/3_alert.png){: width='400' .normal }
+
+`window.onbeforeunload` 속성을 통해 설정할 수 있다.
+
+```js
+window.onbeforeunload = function() {
+  return false;
+};
+// 혹은
+window.addEventListener("beforeunload", (event) => {
+  event.returnValue = false;
+});
+```
+
+모던 브라우저에서는 알러트창의 남용을 막기 위해 커스터마이징을 막아놓았다.
+
+#### 2. unload
+window 객체의 이벤트로, 사용자가 페이지를 떠날 때(문서를 완전히 닫을 때) unload 이벤트가 발생하기 때문에 보통 딜레이가 발생하지 않는 작업(ex. 팝업창 닫기, ...)을 수행하거나 예외적으로 분석 데이터(ex. 클릭, 스크롤, 조회 영역 등) 등을 서버에 전송하고 싶은 경우에는 백그라운드에서 실행되는 특수 메서드인 [navigator.sendBeacon](https://w3c.github.io/beacon/){: target='_blank' } 메서드를 사용한다.
+
+간단한 데이터를 전송하기 위한 메서드로, `window.onunload` 속성이나 `window.addEventListener` 메서드를 통해 설정할 수 있다.
+
+```js
+let analyticsData = { /* object with gathered data */ };
+
+window.addEventListener("unload", function() {
+  navigator.sendBeacon("/analytics", JSON.stringify(analyticsData));
+});
+```
+
+- request 방식 : POST
+- request body 타입
+  - 문자열(JSON 문자열)
+  - `FormData` 객체(데이터를 multipart/form-data 로서 전송)
+  - `Blob` / `BufferSource` 로 바이너리 데이터 전송
+  - [URLSearchParams](https://javascript.info/url){: target='_blank' } (데이터를 x-www-form-urlencoded 인코딩형태로 전송)
+- 데이터의 길이는 64kb 로 제한된다.
+  - 
+- request method, request header 등의 커스터마이징은 지원되지 않으므로, 기본 세팅값이 아닌 request 를 보내기 위해서는 [Fetch API](https://w3c.github.io/beacon/#bib-fetch){: target='_blank' } 를 keepalive 속성을 true 로 설정한 후 사용해야 한다.
+- response callback 은 지원되지 않는다.
+
+#### 3. DOMContentLoaded
+document 객체의 이벤트로, 브라우저가 HTML을 전부 읽고 DOM 트리를 완성하는 즉시 발생한다. 이미지 파일(\<img\>)이나 스타일시트 등의 기타 자원은 기다리지 않는다. DOM이 준비된 것을 확인한 후 원하는 DOM 노드를 찾아 핸들러를 등록해 인터페이스를 초기화할 때 사용할 수 있다. 이 이벤트는 document 객체에서 발생해야 하므로 **document.addEventListener** 메서드를 사용해서 설정해야 한다.
 
 ```html
 <script>
@@ -222,8 +261,66 @@ Navigation Timing 은 **한 페이지에서 다른 페이지로의 navigating** 
     </script>
   ```
 
-#### load
-HTML로 DOM 트리를 만드는 게 완성되었을 뿐만 아니라 이미지, 스타일시트 같은 외부 자원도 모두 불러와서 적용이 끝났을 때 발생한다. 따라서 이미지 사이즈를 확인할 때 등 화면에 뿌려지는 요소의 실제 크기를 확인할 수 있다.
+##### readyState
+요즘엔 잘 사용되지 않는 기능이지만 문서가 로딩중인지 로딩이 끝났는지 확인할 수 있는 `document.readyState` 속성이 있다.
+
+문서가 로드된 후에 `DOMContentLoaded` 핸들러가 등록된 경우에는 핸들러가 절대 동작하지 않는데, 몇몇 페이지에서는 문서가 로드되었는지 아닌지를 판단할 수 없는 경우가 있기 때문에 DOM이 완전히 구성된 후에 특정 함수를 실행해야 할 때 사용한다.
+
+- `"loading"` : 문서를 로딩중인 상태
+- `"interactive"` : 문서가 완전히 로딩된 상태
+- `"complete"` : 문서를 완전히 불러왔고 이미지 등의 리소스들도 불러온 상태
+
+또한 `readystatechange` 이벤트를 활용해 readyState 의 변화에 따라 핸들러를 동작시킬수도 있다.
+
+아래의 코드 예시를 살펴보자.
+
+```html
+<script>
+  log('initial readyState:' + document.readyState);
+
+  document.addEventListener('readystatechange', () => log('readyState:' + document.readyState));
+  document.addEventListener('DOMContentLoaded', () => log('DOMContentLoaded'));
+
+  window.onload = () => log('window onload');
+</script>
+
+<iframe src="iframe.html" onload="log('iframe onload')"></iframe>
+
+<img src="https://en.js.cx/clipart/train.gif" id="img">
+<script>
+  img.onload = () => log('img onload');
+</script>
+```
+
+실행 결과는 아래와 같은 순서로 나온다.
+
+1. [1] initial readyState:loading
+2. [2] readyState:interactive
+3. [2] DOMContentLoaded
+4. [3] iframe onload
+5. [4] img onload
+6. [4] readyState:complete
+7. [4] window onload
+
+대괄호 내 같은 숫자를 가진 경우 ms 단위의 오차로 거의 같은 시간에 동작한다. readyState 의 `interactive` 는 `DOMContentLoaded` 이벤트 직전, `complete` 는 `window.onload` 이벤트 직전에 설정된다.
+
+#### 4. load
+window 객체의 이벤트로, HTML로 DOM 트리를 만드는 게 완성되었을 뿐만 아니라 이미지, 스타일시트 같은 외부 자원도 모두 불러와서 적용이 끝났을 때 발생한다. 따라서 이미지 사이즈를 확인할 때 등 화면에 뿌려지는 요소의 실제 크기를 확인할 수 있다. `window.onload` 속성이나 `window.addEventListener` 메서드를 통해 설정할 수 있다.
+
+로딩이 끝났을 때, id 선택자를 사용해 이미지의 크기를 출력하는 코드를 작성해보자.
+
+```html
+<script>
+  window.onload = function() { // can also use window.addEventListener('load', (event) => {
+    alert('Page loaded');
+
+    // image is loaded at this time
+    alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+  };
+</script>
+
+<img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+```
 
 ---
 
@@ -234,5 +331,8 @@ HTML로 DOM 트리를 만드는 게 완성되었을 뿐만 아니라 이미지, 
 
 ---
 
-서비스 워커
-유저 에이전트
+## 참조
+- <https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Resource_timing/>
+- <https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Navigation_timing/>
+- <https://javascript.info/onload-ondomcontentloaded/>
+- <https://ko.javascript.info/script-async-defer/>
