@@ -24,5 +24,16 @@ math: true
 
 이 두가지 관점에서 내 프로젝트엔 어떤 최적화를 적용할 수 있는지 알아보고 결과를 살펴보자.
 
-## 성능 최적화 도구
+## 성능 측정 도구
 최적화를 적용한 전/후로 성능의 변화를 측정하기 위해선 성능 측정 도구가 먼저 필요하다.
+
+1. **크롬 개발자 도구** : 브라우저에서 제공하는 도구로, f12 를 눌러서 열 수 있다. 여러가지 패널을 제공하는데, 그 중 성능 측정과 관련된 패널들이 있다.
+  - **Network** : 현재 페이지에서 발생하는 모든 네트워크 트래픽의 상세 정보를 볼 수 있다. 각 리소스의 로딩 시점, 크기 등을 확인할 수 있다.<br>
+  ![chrome devtools network panel](/assets/img/captures/1_chrome_devtool_network.png){: width='700' .normal }_네이버 메인페이지_
+  - **Performance** : 현재 페이지가 로드될 때 실행되는 모든 작업을 보여준다. 리소스의 로드와 크기 뿐 아니라, 브라우저 메인 쓰레드에서 실행되는 자바스크립트도 차트 형태로 볼 수 있다. 이를 통해 느리게 실행되는 자바스크립트 코드도 확인 가능하다.<br>
+  ![chrome devtools performance panel](/assets/img/captures/2_chrome_devtool_performance.png){: width='700' .normal }_네이버 메인페이지_
+  - **Lighthouse** : 구글에서 만들어진 툴로 웹 사이트의 성능을 측정하고 개선 방안을 제시해 주며, 원래는 별도로 설치했지만 현재는 개발자 도구의 한 패널로 포함되었다.<br>
+  ![chrome devtools lighthouse panel](/assets/img/captures/3_chrome_devtool_lighthouse.png){: width='700' .normal }_네이버 메인페이지_
+2. **번들 분석 패키지** : 웹 어플리케이션의 빌드에서 번들링된 파일이 어떤 라이브러리를 포함하는지 시각화 해주는 패키지.
+  - **webpack-bundle-analyzer** : 웹팩을 통해 번들링된 프로젝트를 확인
+  - **rollup-plugin-visualizer** : 롤업을 통해 번들링된 프로젝트를 확인(vite, sveltekit 등을 지원)
