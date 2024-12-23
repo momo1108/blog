@@ -37,3 +37,64 @@ math: true
 2. **번들 분석 패키지** : 웹 어플리케이션의 빌드에서 번들링된 파일이 어떤 라이브러리를 포함하는지 시각화 해주는 패키지.
   - **webpack-bundle-analyzer** : 웹팩을 통해 번들링된 프로젝트를 확인
   - **rollup-plugin-visualizer** : 롤업을 통해 번들링된 프로젝트를 확인(vite, sveltekit 등을 지원)
+
+이중에서 가장 많이 사용되는 툴은 Lighthouse 이다. 다른 도구들이 단순히 성능적인 지표들을 보여준다면 Lighthouse 는 어느 부분의 성능이 저조한지, 개선방안은 무엇이 있는지 조언해주는 툴이라고 볼수있다. 아직 최적화 경험이 많지 않기 때문에 나도 이번에 Lighthouse 툴을 사용해 최적화를 진행해보기로 했다.
+
+### Lighthouse
+Lighthouse 의 기본적인 사용방법으로 3가지 옵션을 설정해야 한다.
+
+1. Mode : 어떤 방식으로 분석을 진행할 것인가?
+  - Navigation : (기본값)초기 페이지 로딩 시 성능 분석
+  - Timespan : 사용자 정의 시간 내 성능 분석
+  - Snapshot : 현재 상태의 성능 분석
+2. Device : 분석 환경으로 데스크탑 / 모바일 둘 중 하나를 선택
+3. Categories : 어떤 카테고리의 성능을 분석할 것인가?
+  - Performance : 웹 페이지 로딩 과정의 성능 분석
+  - Accessibility : 사용자 접근성 분석
+  - Best practices : 웹 페이지의 보안, 최신 표준에 중점을 둔 분석
+  - SEO : 검색 엔진에 크롤링, 검색 결과
+
+기본적으로 Navigation 모드로 Performance 카테고리를 활용하여 웹 페이지의 종합 성능을 확인할 수 있다. 아래의 스크린샷은 사이드 프로젝트의 메인 페이지를 분석한 결과이다.
+
+![Lighthouse 분석 결과](/assets/img/captures/4_lighthouse_result.png){: width='700' .normal }
+
+먼저 1번으로 체크한 최상단 부분에서는 Categories 에서 활성화한 분석 카테고리들의 평가 점수가 나온다. 2번위치부터는 각각의 카테고리 항목에 대한 성능 지표들과 함께 성능적인 문제가 있는 부분들을 알려준다.
+
+메인 페이지의 Performance 분석 결과를 더 자세히 살펴보자.
+
+![Lighthouse 분석 결과](/assets/img/captures/5_lighthouse_result.png){: width='700' .normal }
+
+Performance 카테고리에서는 가장 먼저 성능 지표(Metrics)로서 웹 바이탈(Web Vitals)라는 지표를 보여준다.
+
+각각의 지표들을 사용해 종합 성능을 계산하는데, 먼저 지표들을 하나씩 살펴보자.
+
+First Contentful Paint(FCP)
+: 페이지 로딩 시 브라우저가 DOM 컨텐츠의 첫번째 부분(텍스트, 이미지 등)을 렌더링하기까지 걸리는 시간이다. 따라서 메인 페이지에서 첫번째 컨텐츠를 렌더링하기까지 0.7초가 걸렸다는 뜻이다.
+
+Largest Contentful Paint(LCP)
+: 페이지 로딩 시 화면 내의 가장 큰 이미지나 텍스트가 렌더링되기까지 걸리는 시간을 나타낸다. 메인 페이지에서 가장 큰 컨텐츠를 렌더링하는데 1.5초가 걸렸다.
+
+Total Blocking Time(TBT)
+: 페이지 내 사용자 입력(클릭, 키보드 입력 등)을 차단한 시간을 총합한 지표이다. 측정은 FCP 와 TTI(*Time to Interactive: 사용자가 페이지와 상호 작용이 가능한 시점까지 걸린 시간. 화면이 보여도 TTI 전까지는 클릭, 입력 등이 안된다.*)사이에 일어나며, 메인 스레드를 독점하여 다른 동작을 방해하는 작업에 걸린 시간을 총합한다. 메인 페이지는 0ms 의 TBT로, 첫번째 컨텐츠 이후부터는 입력이 제한되지 않은 것을 확인할 수 있다.
+
+Cumulative Layout Shift(CLS)
+: 페이지 로딩 중 예기치 못한 레이아웃 이동(화면상 요소의 위치나 크기의 순간적 변화. 특정 버튼을 누르려다가 상단에 새로운 요소가 생기면 버튼 위치가 밀려서 다른 버튼이 눌리는 문제가 대표적)을 측정한 지표이다. 0.012 라는 측정값이 나왔는데 네트워크 속도를 제한을 걸고 확인해보니 용량이 큰 폰트가 로딩이 되는 순간 환영 문구의 사이즈가 변해 하단의 input, button 의 위치가 변하는 것이 원인인 것 같다.
+
+Speed Index(SI)
+: 페이지 로딩 중 컨텐츠가 시각적으로 표시되는 속도를 나타내는 지표이다. 컨텐츠 전체가 표시되는 시간 뿐 아니라 각각의 일부 요소들이 먼저 뜨는 경우 더 빠른 것으로 판단한다. 메인 페이지는 컨텐츠들이 출력되기까지 0.7초가 걸렸다.
+
+단순히 지표를 계산해서 보여줄 뿐 아니라 성능이 떨어지는 지표를 표시해주고, diagnostics 항목에서는 어떤 부분이 성능을 저하시키는지 진단해주고 대표적인 해결방안도 제안해준다.
+
+메인 페이지의 성능 저하를 유발하는 진단 결과를 살펴보자.
+
+![Lighthouse 분석 결과](/assets/img/captures/6_lighthouse_diagnostics.png){: width='700' .normal }
+
+최상단에서부터 차례대로 우선순위가 높은 문제점들을 알려준다. 첫번째 항목부터 살펴보자.
+
+![Lighthouse 분석 결과](/assets/img/captures/7_lighthouse_diagnostics.png){: width='700' .normal }
+
+메인 페이지 내 존재하는 이미지 파일(로고, 메인 이미지)들을 최신 포맷(WebP, AVIF) 형태로 제공하라는 진단이다. 예상되는 용량 축소는 총 277.8 KiB 중 253 KiB 로 거의 90% 에 가까운 용량을 축소할 수 있다.
+
+두번째 항목은 LCP 이미지를 preload 하라는 진단이다. 이미지를 페이지 내 다른 리소스들보다 우선적으로 로딩하는 방식으로, 잘 설명된 링크를 첨부하겠다. [Preload LCP Image](https://speedvitals.com/blog/preload-lcp-image/){: target='_blank' }
+
+세번째 항목은 Javascript 를 축소하라는 진단이다.
