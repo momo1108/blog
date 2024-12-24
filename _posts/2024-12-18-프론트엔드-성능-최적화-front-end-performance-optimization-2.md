@@ -56,12 +56,14 @@ Lighthouse 의 기본적인 사용방법으로 3가지 옵션을 설정해야 �
 
 기본적으로 Navigation 모드로 Performance 카테고리를 활용하여 웹 페이지의 종합 성능을 확인할 수 있다. 아래의 스크린샷은 사이드 프로젝트의 메인 페이지를 분석한 결과이다.
 
+#### 분석 결과
 ![Lighthouse 분석 결과](/assets/img/captures/4_lighthouse_result.png){: width='700' .normal }
 
 먼저 1번으로 체크한 최상단 부분에서는 Categories 에서 활성화한 분석 카테고리들의 평가 점수가 나온다. 2번위치부터는 각각의 카테고리 항목에 대한 성능 지표들과 함께 성능적인 문제가 있는 부분들을 알려준다.
 
 메인 페이지의 Performance 분석 결과를 더 자세히 살펴보자.
 
+#### 성능 지표
 ![Lighthouse 분석 결과](/assets/img/captures/5_lighthouse_result.png){: width='700' .normal }
 
 Performance 카테고리에서는 가장 먼저 성능 지표(Metrics)로서 웹 바이탈(Web Vitals)라는 지표를 보여준다.
@@ -87,14 +89,61 @@ Speed Index(SI)
 
 메인 페이지의 성능 저하를 유발하는 진단 결과를 살펴보자.
 
-![Lighthouse 분석 결과](/assets/img/captures/6_lighthouse_diagnostics.png){: width='700' .normal }
+#### 진단 결과
+![Lighthouse 진단 결과](/assets/img/captures/6_lighthouse_diagnostics.png){: width='700' .normal }
 
 최상단에서부터 차례대로 우선순위가 높은 문제점들을 알려준다. 첫번째 항목부터 살펴보자.
 
-![Lighthouse 분석 결과](/assets/img/captures/7_lighthouse_diagnostics.png){: width='700' .normal }
+![Lighthouse 진단 결과](/assets/img/captures/7_lighthouse_diagnostics.png){: width='700' .normal }
 
 메인 페이지 내 존재하는 이미지 파일(로고, 메인 이미지)들을 최신 포맷(WebP, AVIF) 형태로 제공하라는 진단이다. 예상되는 용량 축소는 총 277.8 KiB 중 253 KiB 로 거의 90% 에 가까운 용량을 축소할 수 있다.
+
+내 프로젝트에는 이미지에 최신 포맷을 적용하는 방법과 이미지 사이즈에 맞게 원본 이미지를 리사이징하는 방식을 사용할 것이다.
 
 두번째 항목은 LCP 이미지를 preload 하라는 진단이다. 이미지를 페이지 내 다른 리소스들보다 우선적으로 로딩하는 방식으로, 잘 설명된 링크를 첨부하겠다. [Preload LCP Image](https://speedvitals.com/blog/preload-lcp-image/){: target='_blank' }
 
 세번째 항목은 Javascript 를 축소하라는 진단이다.
+
+![Lighthouse 진단 결과](/assets/img/captures/8_lighthouse_diagnostics.png){: width='700' .normal }
+
+메인 페이지에서 로딩되는 자바스크립트 번들 파일의 용량이 263.3 KiB 인데, 이를 더 줄이라는 진단 결과가 나왔다. 예상되는 축소 용량은 40.9 KiB 라고 한다.
+
+축소를 위해서는 먼저 자바스크립트 번들 파일이이 어떤 코드들로 구성이 되어있는지 확인을 해보아야 한다. **rollup-plugin-visualizer** 를 사용해 어떤 구성인지 확인해보고 결정하자. 또한 필요한 코드들만 불러올 수 있도록 코드 스플리팅 등을 적용해야 할 것 같다.
+
+다음 진단 중 Reduce Unused Javascript 항목은 위 내용과 비슷한 내용으로, 코드의 공백이나 쓸모없는 코드를 제거하는 등의 조치가 가능하다.
+
+마지막으로 Largest Contentful Paint element 이다. 말그대로 렌더링이 제일 오래걸린 요소를 뜻하는데, 메인 페이지의 경우 이미지 파일이 1470ms 가 걸렸다고 한다.
+
+![Lighthouse 진단 결과](/assets/img/captures/9_lighthouse_diagnostics.png){: width='700' .normal }
+
+상세 설명란에는 LCP 의 단계별 소요시간을 비율과 시간 단위로 알려준다.
+
+- **TTFB** : Time to First Byte. 사용자가 페이지의 로딩을 시작하고 HTML 문서 응답의 첫번째 바이트를 받기까지의 시간
+- **Load Delay** : 브라우저가 TTFB 시점에서 LCP 리소스의 로딩을 시작하기까지의 시간차
+- **Load Time** : LCP 리소스를 로딩하는 시간
+- **Render Delay** : LCP 리소스 로딩이 끝난 시점부터 LCP 요소가 완전히 렌더링되기까지 걸린 시간
+
+그 외에는 주황색으로 표시된 워닝들이 있는데, 이미지의 width, hegiht 를 지정하여 레이아웃 쉬프트를 방지하고, font display 속성을 지정하라는 등의 내용이 있다.
+
+## 성능 최적화 진행
+먼저 성능 최적화에 가장 시급한 문제는 LCP 이미지와 자바스크립트 번들 파일의 사이즈 최적화이다.
+
+첫번째로 단순히 이미지 파일의 크기를 줄이는것도 도움이 될 수 있겠지만, 좀 더 자세한 분석을 위해 다시한번 LCP 진단 결과를 살펴보자.
+
+![Lighthouse 진단 결과](/assets/img/captures/9_lighthouse_diagnostics.png){: width='700' .normal }
+
+특이한 점은 단순히 리소스가 커서 로딩이 오래걸렸을 거란 예상과는 다르게 Load Time 지표가 아닌 **Load Delay** 지표로 인한 지연이 **78%** 로 가장 큰 비중을 차지했다.
+
+이를 더 자세히 살펴보기 위해 개발자 도구의 performance 탭의 레코딩 기능을 활용해 메인 페이지 로딩 과정을 관찰해보았다.
+
+![Performance 분석 결과](/assets/img/captures/10_performance_result.png){: width='700' .normal }
+
+하단에 표시된 네트워크 부분을 보면 LCP 로 확인된 이미지 파일의 실제 Load Time 자체는 실제 다운로드 시간 외 다른 시간들을 포함해도 10.69ms 에 이루어졌다는것을 확인할 수 있다.
+
+그렇다면 왜 lighthouse 에서는 1470ms 나 걸렸다고 진단을 했을까? 이 이미지 파일을 어떻게 불러왔는지 코드를 살펴보자.
+
+```js
+import signinImgUrl from '@/assets/images/signup.png';
+```
+
+https://ko.react.dev/reference/react-dom/preload#caveats
