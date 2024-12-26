@@ -138,12 +138,16 @@ Speed Index(SI)
 
 ![Performance 분석 결과](/assets/img/captures/10_performance_result.png){: width='700' .normal }
 
-하단에 표시된 네트워크 부분을 보면 LCP 로 확인된 이미지 파일의 실제 Load Time 자체는 실제 다운로드 시간 외 다른 시간들을 포함해도 10.69ms 에 이루어졌다는것을 확인할 수 있다.
+하단에 표시된 네트워크 부분을 보면 LCP 로 확인된 이미지 파일의 실제 Load Time 자체는 실제 다운로드 시간 외 다른 시간들을 포함해도 10.69ms 에 이루어졌고, 시작 시점부터 10ms 정도를 더하면 237ms 정도로 1470ms 와는 크게 차이가 난다.
 
-그렇다면 왜 lighthouse 에서는 1470ms 나 걸렸다고 진단을 했을까? 이 이미지 파일을 어떻게 불러왔는지 코드를 살펴보자.
+왜 lighthouse 에서는 1470ms 나 걸렸는지 궁금해서 설정을 살펴보다 원인을 찾았다.
 
-```js
-import signinImgUrl from '@/assets/images/signup.png';
-```
+![Lighthouse 세팅 항목](/assets/img/captures/11_lighthouse_settings.png){: width='500' .normal }
 
-https://ko.react.dev/reference/react-dom/preload#caveats
+쓰로틀링 항목에서 Lighthouse 자체적으로 시뮬레이팅된 환경이 기본 설정으로 돼어있는데, 개발자 도구의 Performance 탭 등 다른 탭과 통일하기 위해 Devtools throttling 으로 변경하고 다시 Lighthouse 를 돌려보았다.
+
+![Lighthouse 진단 결과](/assets/img/captures/12_lighthouse_diagnostics.png){: width='700' .normal }
+
+이제야 performance 탭과 비슷하게 결과가 나왔다. 리소스 로딩까지 총 260ms, 렌더링까지는 추가 50ms 가 소요됐다.
+
+다음으로 이미지가 출력될 사이즈에 맞게 리사이징을 진행해보자.
