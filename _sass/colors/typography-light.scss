@@ -82,6 +82,7 @@
       rgba(211, 209, 209, 0.15) 0 0 0 1px;
     --footnote-target-bg: lightcyan;
     --tbh-bg: #f9fff3;
+    --tbh-tr-border: 1px solid #e3f7d7;
     --tb-odd-bg: #fdfffa;
     --tb-even-bg: #effcde; // light-theme 에도 추가
     --tb-border-color: #eaeaea;
@@ -90,13 +91,13 @@
     --kbd-text-color: var(--text-color);
     --kbd-bg-color: white;
     --prompt-text-color: rgba(29, 29, 29, 0.952);
-    --prompt-tip-bg: rgba(123, 247, 144, 0.336);
+    --prompt-tip-bg: rgba(123, 247, 144, 0.27);
     --prompt-tip-icon-color: #03b303;
     --prompt-info-bg: rgba(0, 119, 255, 0.164);
     --prompt-info-icon-color: #0070cb;
-    --prompt-warning-bg: rgb(255, 238, 184);
+    --prompt-warning-bg: rgba(255, 238, 184, 0.651);
     --prompt-warning-icon-color: #ef9c03;
-    --prompt-danger-bg: rgba(255, 180, 186, 0.793);
+    --prompt-danger-bg: rgba(255, 180, 186, 0.3);
     --prompt-danger-icon-color: #df3c30;
   
     /* Tags */

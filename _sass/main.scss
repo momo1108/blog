@@ -126,9 +126,9 @@ html {
                 }
 
                 article > div.content {
-                    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", Tahoma, 나눔고딕, "Nanum Gothic", "Malgun Gothic", "맑은 고딕", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum, Tahoma, Geneva, sans-serif;
+                    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", 나눔고딕, "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum, Tahoma, Geneva, sans-serif;
                     word-spacing: 1.5px;
-                    font-size: 14px;
+                    // font-size: 14px;
 
                     p.hideUnderline {
                         height: 0px !important;
@@ -248,6 +248,10 @@ html {
                         }
                     }
 
+                    p:has(a.img-link) {
+                        margin: 48px 0;
+                    }
+
                     img {
                         box-shadow: var(--content-img-shadow);
                     }
@@ -269,6 +273,9 @@ html {
                         &>table {
                             thead tr {
                                 background-color: var(--tbh-bg);
+                                &:not(:last-child){
+                                    border-bottom: var(--tbh-tr-border);
+                                }
                             }
                             tbody tr:nth-child(2n+2) {
                                 background-color: var(--tb-even-bg);
