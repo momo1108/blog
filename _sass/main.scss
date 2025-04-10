@@ -15,7 +15,7 @@
 @mixin fontPoppins($name, $weight, $style) {
     @font-face {
       font-family: "NanumSquareNeo";
-      src: url('/assets/fonts/NanumSquareNeo/#{$name}.woff') format("woff");
+      src: url('/blog/assets/fonts/NanumSquareNeo/#{$name}.woff') format("woff");
       font-weight: $weight;
       font-style: $style;
     }
