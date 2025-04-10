@@ -184,6 +184,7 @@ exclude:
   - LICENSE
   - rollup.config.js
   - package*.json
+  - backup
 
 jekyll-archives:
   enabled: [categories, tags]
@@ -193,3 +194,5 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+destination: "./_site/blog"
