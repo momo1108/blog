@@ -7,7 +7,7 @@ tags: [github, ssh]
 ---
 
 # ssh key 생성 및 github 계정에 등록
-[npm 패키지 제작기 2](/posts/npm-패키지-제작기-2/) 포스트에서 언급한 대로, github에 사용중인 ssh key 에 중복문제가 발생했다.
+[npm 패키지 제작기 2](/blog/posts/npm-패키지-제작기-2/) 포스트에서 언급한 대로, github에 사용중인 ssh key 에 중복문제가 발생했다.
 
 그냥 새로운 키를 만들고 계정에 등록해서 사용하자.
 

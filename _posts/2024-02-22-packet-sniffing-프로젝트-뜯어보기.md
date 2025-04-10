@@ -156,11 +156,11 @@ IsConsole 변수는 단순히 bool 값이고, 변수에 해당하는 값은 `Con
 > COM is a platform-independent, distributed, object-oriented system for creating binary software components that can interact. COM is the foundation technology for Microsoft's OLE (compound documents) and ActiveX (Internet-enabled components) technologies.
 {: .prompt-info }
 
-자세한 내용은 해당 [포스트(COM 이란 무엇인가)](/posts/com-이란-무엇인가/){: target='_blank' } 에 정리해놓겠다.
+자세한 내용은 해당 [포스트(COM 이란 무엇인가)](/blog/posts/com-이란-무엇인가/){: target='_blank' } 에 정리해놓겠다.
 
 중요한 것은 쓰레딩 모델이 STA 라는 것인데, 이는 
 
-자세한 내용은 또 따로 [포스트(COM 의 Processes, Threads, Apartments)](/posts/com-의-processes-threads-apartments/){: target='_blank' }에 정리해놓겠다.
+자세한 내용은 또 따로 [포스트(COM 의 Processes, Threads, Apartments)](/blog/posts/com-의-processes-threads-apartments/){: target='_blank' }에 정리해놓겠다.
 
 ---
 
@@ -172,7 +172,7 @@ Bluegrams.Application.PortableSettingsProvider.SettingsFileName = AppDomain.Curr
 Bluegrams.Application.PortableSettingsProvider.ApplyProvider(Properties.Settings.Default);
 ```
 
-`Properties.Settings.Default` 은 **Application Settings** 와 관련된 코드이다. **Application Settings** 의 자세한 내용은 [.NET(Dotnet) application settings 관리](/posts/net-dotnet-application-settings-관리/){: target='_blank' } 포스트를 확인하자.
+`Properties.Settings.Default` 은 **Application Settings** 와 관련된 코드이다. **Application Settings** 의 자세한 내용은 [.NET(Dotnet) application settings 관리](/blog/posts/net-dotnet-application-settings-관리/){: target='_blank' } 포스트를 확인하자.
 
 정확힌 모르겠다. `Properties.Settings.Default.Providers` 는 wrapper 클래스에서 사용된 application settings providers 의 collection 을 반환하며, `Clear` 메서드는 해당 collection 의 모든 item 들을 삭제한다.
 
@@ -371,5 +371,5 @@ Main 에서 VersionCompatibility 라는 스태틱 메서드를 실행하는데, 
 
 첫번째 코드를 살펴보자. `DllImportAttribute` 를 사용하고 있다. [도큐먼트](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-8.0){: target='_blank' }에 따르면 어트리뷰트가 사용된 메서드는 unmanaged DLL(Dynamic-Link Library) 로부터 실행됨을 뜻하는 것 같다.
 
-DLL 은 간단히 말하면 공유 라이브러리(shared library)인데, 관련 자세한 내용은 따로 포스트 [DLL(Dynamic-Link Library)란 무엇인가](/posts/net-dotnet-application-settings-관리/){: target='_blank' } 에 정리해두었다.
+DLL 은 간단히 말하면 공유 라이브러리(shared library)인데, 관련 자세한 내용은 따로 포스트 [DLL(Dynamic-Link Library)란 무엇인가](/blog/posts/net-dotnet-application-settings-관리/){: target='_blank' } 에 정리해두었다.
 
